@@ -1,3 +1,3 @@
-DROP DATABASE IF EXISTS highSpirits_db;
+DROP DATABASE IF EXISTS highSpirits;
 
-CREATE DATABASE highSpirits_db;
+CREATE DATABASE highSpirits;
