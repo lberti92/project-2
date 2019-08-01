@@ -14,17 +14,14 @@ module.exports = function (passport) {
                 if (!user) {
                     return done(null, false, { message: "This email is not registered" });
                 }
-
                 // Compare the passwords
-                bcrypt.compare(password, user.password, function (err, isMatch) {
-                    if (err) throw err;
+                else if (!user.validPassword(password)) {
+                    return done(null, false, {
+                        message: "Incorrect password."
+                    });
+                }
 
-                    if (isMatch) {
-                        return done(null, user);
-                    } else {
-                        return done(null, false, { message: "Password does not match." })
-                    }
-                })
+                return done(null, user);
             })
                 .catch(function (err) {
                     console.log(err);
@@ -32,14 +29,13 @@ module.exports = function (passport) {
         })
     );
 
-    passport.serializeUser(function (user, done) {
-        done(null, user.id);
-    });
-
-    passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
-            done(err, user);
-        });
-    });
+    // Serializing the user session while logged in
+    passport.serializeUser(function(user, cb) {
+        cb(null, user);
+      });
+      //
+      passport.deserializeUser(function(obj, cb) {
+        cb(null, obj);
+      });
 
 }

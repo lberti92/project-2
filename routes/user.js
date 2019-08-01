@@ -1,5 +1,5 @@
 var db = require("../models");
-var bcrypt = require("bcryptjs");
+var passport = require("passport");
 
 module.exports = function (app) {
     // Login Page
@@ -12,7 +12,7 @@ module.exports = function (app) {
         res.render("register");
     })
 
-    // Register
+    // Register and post to the User table
     app.post("/users/register", function (req, res) {
         var { name, email, password, password2 } = req.body;
         var errors = [];
@@ -54,27 +54,33 @@ module.exports = function (app) {
                         password2
                     });
                 } else {
-
                     var newUser = {
                         name,
                         email,
                         password
                     }
-                    
-                    // Encrypt the password
-                    bcrypt.genSalt(10, function (err, salt) {
-                        bcrypt.hash(newUser.password, salt, function (err, hash) {
-                            if (err) throw err;
-                            // set password to hashed
-                            newUser.password = hash;
-                            db.User.create(newUser).then(function (user) {
-                                res.json(user);
-                            })
-                        });
-                    })
+
+                    db.User.create(newUser).then(function (user) {
+                        res.json(user);
+                    }).then(function () {
+                        res.redirect(307, "/api/login");
+                    }).catch(function (err) {
+                        console.log(err);
+                        res.json(err);
+                    });
                 }
             })
         }
     })
+
+    // Login Handle 
+    app.post("/users/login", passport.authenticate("local"), function (req, res) {
+        res.json("/members");
+    });
+
+    app.get("/logout", function (req, res) {
+        req.logout();
+        res.redirect("/");
+    });
 
 };
