@@ -1,3 +1,4 @@
 DROP DATABASE IF EXISTS highSpirits;
 
 CREATE DATABASE highSpirits;
+
