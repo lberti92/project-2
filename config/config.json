@@ -1,10 +1,14 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "root9",
+=======
+    "password": "",
+>>>>>>> master
     "database": "highSpirits",
     "host": "127.0.0.1",
-    "port": 8889,
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
