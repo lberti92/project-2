@@ -12,7 +12,7 @@ module.exports = function (passport) {
                 }
             }).then(function (user) {
                 if (!user) {
-                    return done(null, false, { message: "This email is not registered" });
+                    return done(null, false, { message: "This email is not registered." });
                 }
                 // Compare the passwords
                 else if (!user.validPassword(password)) {
