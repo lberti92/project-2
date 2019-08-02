@@ -2,17 +2,7 @@ var db = require("../models");
 var passport = require("passport");
 
 module.exports = function (app) {
-    // Login Page
-    app.get("/users/login", function (req, res) {
-        res.render("login");
-    })
-
-    // Register Page
-    app.get("/users/register", function (req, res) {
-        res.render("register");
-    })
-
-    // Register and post to the User table
+ // Register and post to the User table
     app.post("/users/register", function (req, res) {
         var { name, email, password, password2 } = req.body;
         var errors = [];

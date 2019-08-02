@@ -27,6 +27,7 @@ app.use(
 );
 
 // Passport Middleware
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
