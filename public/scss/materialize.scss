@@ -41,8 +41,22 @@
 @import "components/timepicker";
 
 $background-color: #333;
-$text-color: rgb(243, 237, 237);
-$hover-color: red;
+$secondary-text-color: rgb(243, 237, 237);
+$normal-padding: 25px;
+
+
 .parallax-container {
     height: 400px;
 }
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+     
+
