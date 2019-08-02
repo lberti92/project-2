@@ -52,8 +52,6 @@ module.exports = function (app) {
 
                     db.User.create(newUser).then(function (user) {
                         res.json(user);
-                    }).then(function () {
-                        res.redirect(307, "/api/login");
                     }).catch(function (err) {
                         console.log(err);
                         res.json(err);
@@ -64,9 +62,10 @@ module.exports = function (app) {
     })
 
     // Login Handle 
-    app.post("/users/login", passport.authenticate("local"), function (req, res) {
+ app.post("/users/login", passport.authenticate("local"), function (req, res) {
         res.json("/members");
     });
+
 
     app.get("/logout", function (req, res) {
         req.logout();
