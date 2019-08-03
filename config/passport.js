@@ -30,12 +30,12 @@ module.exports = function (passport) {
     );
 
     // Serializing the user session while logged in
-    passport.serializeUser(function(user, cb) {
+    passport.serializeUser(function (user, cb) {
         cb(null, user);
-      });
-      //
-      passport.deserializeUser(function(obj, cb) {
+    });
+    //
+    passport.deserializeUser(function (obj, cb) {
         cb(null, obj);
-      });
+    });
 
 }
