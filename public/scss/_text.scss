@@ -1,0 +1,14 @@
+$primary-font: 'Darker Grotesque', sans-serif;
+$secondary-font: 'Raleway', sans-serif;
+$header-font: 'Oleo Script', cursive;
+h1,
+h2 {
+    font-family: $header-font;
+    font-size: 60px;
+}
+
+p,
+a,
+li {
+    font-family: $secondary-font;
+}
