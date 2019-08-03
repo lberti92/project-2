@@ -1,5 +1,9 @@
 module.exports = function (sequelize, DataTypes) {
     var Alcohol = sequelize.define("Alcohol", {
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
         alcoholType: {
             type: DataTypes.STRING,
             allowNull: false,
