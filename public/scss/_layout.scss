@@ -1,0 +1,36 @@
+$normal-padding: 25px;
+
+@mixin card($width, $height, $bg, $border) {
+  width: $width;
+  height: $height;
+  background: $bg;
+  border: $border;
+  }
+
+.parallax-container {
+  height: 400px;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  width: 100%;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer{
+    padding-top: $normal-padding;
+    height: 75px;
+}
+.card {
+    margin: 10px;
+    padding: 0;
+}
+.activator{
+    padding-top: 10px;
+    width: 100%;
+}

@@ -4,6 +4,7 @@ var passport = require("passport");
 module.exports = function (app) {
  // Register and post to the User table
     app.post("/users/register", function (req, res) {
+        console.log(req.body);
         var { name, email, password, password2 } = req.body;
         var errors = [];
 

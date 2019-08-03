@@ -24,4 +24,10 @@ module.exports = function (app) {
             res.render("dashboard", isAuthenticated, user)
         })
     });
+  app.get("/users/login", function(req, res) {
+      res.render("login");
+  });
+  app.get("/", function (req,res){
+      res.render("homepage");
+  })
 };
