@@ -12,6 +12,7 @@ module.exports = function(app) {
   app.get("/users/login", function(req, res) {
       res.render("login");
   });
+  
   app.get("/", function (req,res){
       res.render("homepage");
   })
