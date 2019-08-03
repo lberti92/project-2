@@ -60,9 +60,12 @@ module.exports = function (app) {
     })
 
     // Login Handle 
- app.post("/users/login", passport.authenticate("local"), function (req, res) {
-    res.redirect(`/users/dashboard/${req.session.passport.user.id}`);
-    });
+ app.post("/users/login", passport.authenticate("local", { 
+     successRedirect: `/users/dashboard`,
+    failureRedirect: `/users/login`
+}), function(req, res) {
+    res.json(req.user.id)
+});
 
 
     app.get("/logout", function (req, res) {
