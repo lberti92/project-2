@@ -13,6 +13,6 @@ module.exports = function(app) {
       res.render("login");
   });
   app.get("/", function (req,res){
-      res.render("index");
+      res.render("homepage");
   })
 };

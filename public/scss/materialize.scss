@@ -39,24 +39,10 @@
 @import "components/pulse";
 @import "components/datepicker";
 @import "components/timepicker";
+@import "colors";
+@import "text";
+@import "layout";
+@import "buttons";
 
-$background-color: #333;
-$secondary-text-color: rgb(243, 237, 237);
-$normal-padding: 25px;
 
-
-.parallax-container {
-    height: 400px;
-}
-
-body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-}
-
-main {
-    flex: 1 0 auto;
-}
-     
 

@@ -6165,9 +6165,7 @@ input[type=range]::-ms-thumb {
   .tap-target-wrapper.open .tap-target-wave::after {
     visibility: visible;
     animation: pulse-animation 1s cubic-bezier(0.24, 0, 0.38, 1) infinite;
-    transition: opacity .3s,
- transform .3s,
- visibility 0s 1s; }
+    transition: opacity .3s, transform .3s, visibility 0s 1s; }
 
 .tap-target {
   position: absolute;
@@ -6202,9 +6200,7 @@ input[type=range]::-ms-thumb {
     transition: transform .3s; }
   .tap-target-wave::after {
     visibility: hidden;
-    transition: opacity .3s,
- transform .3s,
- visibility 0s;
+    transition: opacity .3s, transform .3s, visibility 0s;
     z-index: -1; }
 
 .tap-target-origin {
@@ -6529,16 +6525,85 @@ input[type=range]::-ms-thumb {
     text-align: center;
     margin-top: 1.2rem; } }
 
+main {
+  background-image: url("../../img/mountain.jpeg"); }
+
+.card {
+  background-color: white; }
+
+h2 {
+  color: #f3eded; }
+
+a {
+  color: #172801; }
+  a:hover {
+    color: coral; }
+
+h1,
+h2 {
+  font-family: "Oleo Script", cursive;
+  font-size: 60px; }
+
+p,
+a,
+li {
+  font-family: "Raleway", sans-serif; }
+
 .parallax-container {
   height: 400px; }
-  
-  body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
 
-  main {
-    flex: 1 0 auto;
-  }
-      
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  width: 100%; }
+
+main {
+  flex: 1 0 auto; }
+
+footer {
+  padding-top: 25px;
+  height: 75px; }
+
+.card {
+  margin: 10px;
+  padding: 0; }
+
+.activator {
+  padding-top: 10px;
+  width: 100%; }
+
+h1,
+h2 {
+  font-family: "Oleo Script", cursive;
+  font-size: 60px; }
+
+p,
+a,
+li {
+  font-family: "Raleway", sans-serif; }
+
+main {
+  background-image: url("../../img/mountain.jpeg"); }
+
+.card {
+  background-color: white; }
+
+h2 {
+  color: #f3eded; }
+
+a {
+  color: #172801; }
+  a:hover {
+    color: coral; }
+
+.button {
+  float: right;
+  margin-top: 15px;
+  background-color: #172801;
+  color: #f3eded;
+  font-family: "Raleway", sans-serif;
+  font-size: 15px; }
+  .button:hover {
+    color: black;
+    background-color: #989D95; }
