@@ -1,0 +1,22 @@
+$background-color: #172801;
+$secondarybg: #989D95;
+$primary-text-color: #696969;
+$secondary-text-color: rgb(243, 237, 237);
+
+main{
+    background-image: url("../../img/mountain.jpeg");
+}
+
+
+.card{
+    background-color: white;
+}
+h2{
+    color: $secondary-text-color;
+}
+a {
+    color: $background-color;
+    &:hover {
+        color:coral;
+    }
+}

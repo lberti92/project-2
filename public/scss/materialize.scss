@@ -39,10 +39,10 @@
 @import "components/pulse";
 @import "components/datepicker";
 @import "components/timepicker";
+@import "colors";
+@import "text";
+@import "layout";
+@import "buttons";
 
-$background-color: #333;
-$text-color: rgb(243, 237, 237);
-$hover-color: red;
-.parallax-container {
-    height: 400px;
-}
+
+
