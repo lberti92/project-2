@@ -14,6 +14,7 @@ module.exports = function (app) {
 
     // Register and post to the User table
     app.post("/users/register", function (req, res) {
+        console.log(req.body);
         var { name, email, password, password2 } = req.body;
         var errors = [];
 
@@ -62,8 +63,6 @@ module.exports = function (app) {
 
                     db.User.create(newUser).then(function (user) {
                         res.json(user);
-                    }).then(function () {
-                        res.redirect(307, "/api/login");
                     }).catch(function (err) {
                         console.log(err);
                         res.json(err);
