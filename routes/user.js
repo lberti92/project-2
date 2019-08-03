@@ -24,7 +24,7 @@ module.exports = function (app) {
                 email,
                 password,
                 password2
-            })
+              })
         } else {
             // Passed validation
             // Check if the email is already in use
@@ -36,12 +36,9 @@ module.exports = function (app) {
                 if (user) {
                     // user exists, add an error message
                     errors.push({ msg: "Email is already registered" });
-                    res.render("register", {
+                    res.render("login", {
                         errors,
-                        name,
                         email,
-                        password,
-                        password2
                     });
                 } else {
                     var newUser = {
@@ -63,7 +60,7 @@ module.exports = function (app) {
 
     // Login Handle 
  app.post("/users/login", passport.authenticate("local"), function (req, res) {
-        res.json("/members");
+    res.redirect(`/users/dashboard/${req.session.passport.user.id}`);
     });
 
 
