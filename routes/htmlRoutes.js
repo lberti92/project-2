@@ -5,35 +5,41 @@ var db = require("../models");
 
 // Routes
 module.exports = function (app) {
-  app.get("/", function (req, res) {
-    res.render("index")
-  });
+    app.get("/", function (req, res) {
+        res.render("index")
+    });
 
-  app.get("/users/register", function (req, res) {
-    res.render("register");
-  });
+    // User Routes
+    app.get("/users/register", function (req, res) {
+        res.render("register");
+    });
 
-  app.get("/users/login", function (req, res) {
-    res.render("login");
-  });
+    app.get("/users/login", function (req, res) {
+        res.render("login");
+    });
 
-  app.get("/homepage", function (req, res) {
-    res.render("homepage")
-  });     
+    app.get("/users/dashboard", ensureAuthenticated, function (req, res) {
+        console.log(req.user);
+        res.render("dashboard", req.user);
+    })
 
-  app.get("/types", function (req, res) {
-    res.render("type")
-  });
+    app.get("/homepage", function (req, res) {
+        res.render("homepage")
+    });
 
-  app.get("/flavor", function (req, res){
-    res.render("flavor")
-  });
+    app.get("/types", function (req, res) {
+        res.render("type")
+    });
 
-  app.get("/ratings", function (req, res){
-    res.render("rating")
-  });
+    app.get("/flavor", function (req, res) {
+        res.render("flavor")
+    });
 
-  app.get("/underage", function (req, res){
-    res.sendFile(path.join(__dirname + "/underage.html"));
-  })
+    app.get("/ratings", function (req, res) {
+        res.render("rating")
+    });
+
+    app.get("/underage", function (req, res) {
+        res.sendFile(path.join(__dirname + "/underage.html"));
+    })
 };

@@ -2,7 +2,7 @@ var db = require("../models");
 var passport = require("passport");
 
 module.exports = function (app) {
- // Register and post to the User table
+    // Register and post to the User table
     app.post("/users/register", function (req, res) {
         console.log(req.body);
         var { name, email, password, password2 } = req.body;
@@ -25,7 +25,7 @@ module.exports = function (app) {
                 email,
                 password,
                 password2
-              })
+            })
         } else {
             // Passed validation
             // Check if the email is already in use
@@ -49,7 +49,7 @@ module.exports = function (app) {
                     }
 
                     db.User.create(newUser).then(function (user) {
-                        res.json(user);
+                        res.redirect("/users/login");
                     }).catch(function (err) {
                         console.log(err);
                         res.json(err);
@@ -60,12 +60,12 @@ module.exports = function (app) {
     })
 
     // Login Handle 
- app.post("/users/login", passport.authenticate("local", { 
-     successRedirect: `/users/dashboard`,
-    failureRedirect: `/users/login`
-}), function(req, res) {
-    res.json(req.user.id)
-});
+    app.post("/users/login", passport.authenticate("local", {
+        successRedirect: `/users/dashboard`,
+        failureRedirect: `/users/login`
+    }), function (req, res) {
+        res.json(req.user.id)
+    });
 
 
     app.get("/logout", function (req, res) {
@@ -73,4 +73,48 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
+    app.post("/favorite", function (req, res) {
+        var userId = req.body.userId;
+        var distId = req.body.distId;
+        db.User.findOne({
+            where: {
+                id: userId
+            }, include: ["favorites"] //favorites is the alias for the table where favorites are stored
+        }).then(function (user) {
+            console.log(user);
+            user.addFavorites(distId)
+                .then(function (response) {
+                    res.json(response);
+                })
+        })
+    });
+
+    app.post("/try", function (req, res) {
+        var userId = req.body.userId;
+        var distId = req.body.distId;
+        db.User.findOne({
+            where: {
+                id: userId
+            }, include: ["toTry"] // alias where the distilleries are stored
+        }).then(function (user) {
+            console.log(user);
+            user.addToTry(distId)
+                .then(function (response) {
+                    console.log(response);
+                    res.json(response);
+                })
+            
+        })
+    });
+
+
+    app.get("/users/:id", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            }, include: ["favorites", "toTry"]
+        }).then(function(user) {
+            res.json(user);
+        })
+    })
 };
