@@ -13,6 +13,8 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
         }
+    }, {
+        timestamps: false
     });
 
     Distillery.associate = function (models) {
@@ -20,8 +22,8 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "CASCADE"
         });
 
-        Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'userId'});
-        Distillery.belongsToMany(models.User, {through: 'Favorites', foreignKey: 'userId'});
+        // Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'userId'});
+        Distillery.belongsToMany(models.User, {through: 'Favorites', foreignKey: 'distId', as: "user"});
 
 
     }
