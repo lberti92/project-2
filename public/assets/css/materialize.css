@@ -6525,7 +6525,10 @@ input[type=range]::-ms-thumb {
     text-align: center;
     margin-top: 1.2rem; } }
 
-main {
+.type-page,
+.filter-page,
+.flavor-page,
+.rating-page {
   background-image: url("../../img/mountain.jpeg"); }
 
 .card {
@@ -6576,6 +6579,9 @@ footer {
 .login-button {
   margin-right: 5px; }
 
+.collection {
+  border: none; }
+
 h1,
 h2 {
   font-family: "Oleo Script", cursive;
@@ -6586,7 +6592,10 @@ a,
 li {
   font-family: "Raleway", sans-serif; }
 
-main {
+.type-page,
+.filter-page,
+.flavor-page,
+.rating-page {
   background-image: url("../../img/mountain.jpeg"); }
 
 .card {
@@ -6610,3 +6619,6 @@ a {
   .button:hover {
     color: black;
     background-color: #989D95; }
+
+.centered {
+  margin: 0 auto; }
