@@ -1,3 +1,4 @@
+
 //allows parallax image on index page
 $(document).ready(function () {
     $('.parallax').parallax();
@@ -25,3 +26,5 @@ $(".collection-item").on('click', function() {
     var typeSelection = $(this).attr("data-type");      
     console.log(typeSelection);   
 });
+
+

@@ -1,9 +1,9 @@
 // Middleware to ensure that a user is logged-in in order to complete a request
-var isAuthenticated = require("../config/auth.js");
+var { ensureAuthenticated, forwardAuthenticated } = require("../config/auth.js");
 var path = require("path");
+var db = require("../models");
 
 // Routes
-// =============================================================
 module.exports = function (app) {
   app.get("/", function (req, res) {
     res.render("index")

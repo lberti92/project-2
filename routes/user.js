@@ -2,17 +2,7 @@ var db = require("../models");
 var passport = require("passport");
 
 module.exports = function (app) {
-    // Login Page
-    app.get("/users/login", function (req, res) {
-        res.render("login");
-    })
-
-    // Register Page
-    app.get("/users/register", function (req, res) {
-        res.render("register");
-    })
-
-    // Register and post to the User table
+ // Register and post to the User table
     app.post("/users/register", function (req, res) {
         console.log(req.body);
         var { name, email, password, password2 } = req.body;
@@ -35,7 +25,7 @@ module.exports = function (app) {
                 email,
                 password,
                 password2
-            })
+              })
         } else {
             // Passed validation
             // Check if the email is already in use
@@ -47,12 +37,9 @@ module.exports = function (app) {
                 if (user) {
                     // user exists, add an error message
                     errors.push({ msg: "Email is already registered" });
-                    res.render("register", {
+                    res.render("login", {
                         errors,
-                        name,
                         email,
-                        password,
-                        password2
                     });
                 } else {
                     var newUser = {
@@ -73,9 +60,13 @@ module.exports = function (app) {
     })
 
     // Login Handle 
-    app.post("/users/login", passport.authenticate("local"), function (req, res) {
-        res.json("/members");
-    });
+ app.post("/users/login", passport.authenticate("local", { 
+     successRedirect: `/users/dashboard`,
+    failureRedirect: `/users/login`
+}), function(req, res) {
+    res.json(req.user.id)
+});
+
 
     app.get("/logout", function (req, res) {
         req.logout();
