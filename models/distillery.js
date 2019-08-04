@@ -24,8 +24,6 @@ module.exports = function (sequelize, DataTypes) {
 
         Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'userId', as: "userSaved"});
         Distillery.belongsToMany(models.User, {through: 'Favorites', foreignKey: 'distId', as: "user"});
-
-
     }
     return Distillery;
 };

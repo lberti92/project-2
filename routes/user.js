@@ -73,34 +73,48 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
-    app.post("/favorite", function(req, res) {
+    app.post("/favorite", function (req, res) {
         var userId = req.body.userId;
         var distId = req.body.distId;
         db.User.findOne({
             where: {
                 id: userId
             }, include: ["favorites"] //favorites is the alias for the table where favorites are stored
-        }).then(function(user) {
+        }).then(function (user) {
+            console.log(user);
             user.addFavorites(distId)
-      .then(function(response) {
-        res.json(response);
-      })
+                .then(function (response) {
+                    res.json(response);
+                })
         })
     });
 
-    app.post("/try", function(req, res) {
+    app.post("/try", function (req, res) {
         var userId = req.body.userId;
         var distId = req.body.distId;
         db.User.findOne({
             where: {
                 id: userId
             }, include: ["toTry"] // alias where the distilleries are stored
-        }).then(function(user) {
+        }).then(function (user) {
+            console.log(user);
             user.addToTry(distId)
-      .then(function(response) {
-        res.json(response);
-      })
+                .then(function (response) {
+                    console.log(response);
+                    res.json(response);
+                })
+            
         })
     });
 
+
+    app.get("/users/:id", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.id
+            }, include: ["favorites", "toTry"]
+        }).then(function(user) {
+            res.json(user);
+        })
+    })
 };

@@ -5,8 +5,8 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   ToTry.associate = function (models) {
-    ToTry.belongsTo(models.User, { foreignKey: 'userId' })
-    ToTry.belongsTo(models.Distillery, { foreignKey: 'distId' })
+    ToTry.belongsTo(models.User, { foreignKey: 'userId' });
+    ToTry.belongsTo(models.Distillery, { foreignKey: 'distId' });
   };
 
   return ToTry;
