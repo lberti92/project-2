@@ -22,7 +22,7 @@ module.exports = function (sequelize, DataTypes) {
             onDelete: "CASCADE"
         });
 
-        // Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'userId'});
+        Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'userId', as: "userSaved"});
         Distillery.belongsToMany(models.User, {through: 'Favorites', foreignKey: 'distId', as: "user"});
 
 

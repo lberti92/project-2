@@ -86,6 +86,21 @@ module.exports = function (app) {
         res.json(response);
       })
         })
-    })
+    });
+
+    app.post("/try", function(req, res) {
+        var userId = req.body.userId;
+        var distId = req.body.distId;
+        db.User.findOne({
+            where: {
+                id: userId
+            }, include: ["toTry"]
+        }).then(function(user) {
+            user.addToTry(distId)
+      .then(function(response) {
+        res.json(response);
+      })
+        })
+    });
 
 };
