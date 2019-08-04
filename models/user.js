@@ -33,5 +33,12 @@ module.exports = function (sequelize, DataTypes) {
         );
     });
 
+    User.associate = function(models) {
+
+        User.belongsToMany(models.Distillery, {through: 'Favorites', foreignKey: 'favDistId', as: "favorites"});
+        User.belongsToMany(models.Distillery, {through: "ToTries", foreignKey: "distToTryId", as: "toTry"});
+
+      };
+
     return User;
 };

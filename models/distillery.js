@@ -1,6 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
     var Distillery = sequelize.define("Distillery", {
-        
+
         distillery: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -16,13 +16,14 @@ module.exports = function (sequelize, DataTypes) {
     });
 
     Distillery.associate = function (models) {
-        Distillery.hasMany(models.Alcohol, { 
-            onDelete: "CASCADE" 
+        Distillery.hasMany(models.Alcohol, {
+            onDelete: "CASCADE"
         });
+
+        Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'userId'});
+        Distillery.belongsToMany(models.User, {through: 'Favorites', foreignKey: 'userId'});
+
+
     }
     return Distillery;
 };
-
-
-
-
