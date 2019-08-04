@@ -79,7 +79,7 @@ module.exports = function (app) {
         db.User.findOne({
             where: {
                 id: userId
-            }, include: ["favorites"]
+            }, include: ["favorites"] //favorites is the alias for the table where favorites are stored
         }).then(function(user) {
             user.addFavorites(distId)
       .then(function(response) {
@@ -94,7 +94,7 @@ module.exports = function (app) {
         db.User.findOne({
             where: {
                 id: userId
-            }, include: ["toTry"]
+            }, include: ["toTry"] // alias where the distilleries are stored
         }).then(function(user) {
             user.addToTry(distId)
       .then(function(response) {
