@@ -86,6 +86,9 @@ module.exports = function (app) {
                 .then(function (response) {
                     res.json(response);
                 })
+                .catch(function(err) {
+                    console.log(err)
+                })
         })
     });
 
@@ -103,7 +106,9 @@ module.exports = function (app) {
                     console.log(response);
                     res.json(response);
                 })
-            
+                .catch(function(err) {
+                    console.log(err)
+                })
         })
     });
 
