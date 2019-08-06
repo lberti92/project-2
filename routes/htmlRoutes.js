@@ -21,7 +21,7 @@ module.exports = function (app) {
     app.get("/users/dashboard", ensureAuthenticated, function (req, res) {
         console.log(req.user);
         res.render("dashboard", req.user);
-    })
+    });
 
     app.get("/homepage", function (req, res) {
         res.render("homepage")
@@ -40,6 +40,10 @@ module.exports = function (app) {
     });
 
     app.get("/underage", function (req, res) {
-        res.sendFile(path.join(__dirname + "/underage.html"));
-    })
+        res.sendFile(path.join(__dirname, "../views/html/underage.html"));
+    });
+
+    app.get("/location", function (req, res){
+        res.sendFile(path.join(__dirname, "../views/html/location.html"))
+    });
 };
