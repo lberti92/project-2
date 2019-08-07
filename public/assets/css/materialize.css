@@ -6528,8 +6528,10 @@ input[type=range]::-ms-thumb {
 .type-page,
 .filter-page,
 .flavor-page,
-.rating-page {
-  background-image: url("../../img/mountain.jpeg"); }
+.rating-page,
+.login-page {
+  background-image: url("../../img/mountain.jpeg");
+  min-height: 100vh; }
 
 .card {
   background-color: white; }
@@ -6582,6 +6584,19 @@ footer {
 .collection {
   border: none; }
 
+#map {
+  width: 75%;
+  height: 75%;
+  background-color: grey;
+  visibility: visible;
+  position: absolute; }
+
+.register-button {
+  padding-top: 10px; }
+
+.hidden {
+  display: none; }
+
 h1,
 h2 {
   font-family: "Oleo Script", cursive;
@@ -6595,8 +6610,10 @@ li {
 .type-page,
 .filter-page,
 .flavor-page,
-.rating-page {
-  background-image: url("../../img/mountain.jpeg"); }
+.rating-page,
+.login-page {
+  background-image: url("../../img/mountain.jpeg");
+  min-height: 100vh; }
 
 .card {
   background-color: white; }

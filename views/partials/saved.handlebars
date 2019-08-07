@@ -1,0 +1,12 @@
+    {{#if user.toTry}}
+    <h4>Your Saved Distilleries</h4>
+    <ul>
+        {{#each user.toTry}}
+        <li>
+            <h5>{{this.distillery}}</h5>
+            <p><a href="{{this.website}}">Website</a></p>
+            <p>{{this.city}}</p>
+            </li>
+        {{/each}}
+    </ul>
+    {{/if}}
