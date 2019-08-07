@@ -18,7 +18,6 @@ module.exports = function (sequelize, DataTypes) {
         },
     });
 
-
     Alcohol.associate = function (models) {
         Alcohol.belongsTo(models.Distillery, {
             foreignKey: {
@@ -26,6 +25,5 @@ module.exports = function (sequelize, DataTypes) {
             }
         })
     }
-
     return Alcohol;
 };
