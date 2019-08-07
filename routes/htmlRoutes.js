@@ -19,9 +19,15 @@ module.exports = function (app) {
     });
 
     app.get("/users/dashboard", ensureAuthenticated, function (req, res) {
-        console.log(req.user);
-        res.render("dashboard", req.user);
-    });
+        db.User.findOne({
+            where: {
+                id: req.user.id
+            }, include: ["favorites", "toTry"]
+        }).then(function(user){
+            console.log(user);
+            res.render("dashboard", {user: user.dataValues});
+        })
+    })
 
     app.get("/homepage", function (req, res) {
         res.render("homepage")

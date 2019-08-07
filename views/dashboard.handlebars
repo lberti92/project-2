@@ -1,1 +1,10 @@
-<h1>LOADED</h1>
+<h3>Cheers, {{ user.name }}!</h3>
+<div class="row">
+    <div class="col s12 m6">
+        {{> favorites}}
+    </div>
+
+    <div class="col s12 m6">
+        {{> saved}}
+    </div>
+</div>
