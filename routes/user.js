@@ -112,6 +112,28 @@ module.exports = function (app) {
         })
     });
 
+    app.post("/rate", function(req, res) {
+        db.UserRating.create({
+            // alcoholName: req.body.alcoholName,
+            rating: req.body.rating,
+            comment: req.body.comment,
+            AlcoholId: req.body.AlcoholId,
+            UserId: req.body.UserId
+        }).then(function(rating){
+            res.json(rating);
+        })
+    });
+
+    app.get("/users/ratings/:UserId", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.UserId
+            }, include: [db.UserRating]
+        }).then(function(userRatings) {
+            res.json(userRatings);
+        })
+    });
+
 
     app.get("/users/:id", function(req, res) {
         db.User.findOne({
@@ -121,5 +143,5 @@ module.exports = function (app) {
         }).then(function(user) {
             res.json(user);
         })
-    })
+    });
 };

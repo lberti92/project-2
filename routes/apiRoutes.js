@@ -61,4 +61,13 @@ module.exports = function(app) {
   //   });
   // });
 
+  app.get("/api/alcohol/ratings/:AlcoholId", function(req, res) {
+    db.UserRating.findOne({
+      where: {
+        AlcoholId: req.params.AlcoholId
+      }, include: [db.Alcohol]
+    }).then(function(alcohol) {
+      res.json(alcohol);
+    })
+  });
 };
