@@ -6529,7 +6529,9 @@ input[type=range]::-ms-thumb {
 .filter-page,
 .flavor-page,
 .rating-page,
-.login-page {
+.login-page,
+.register-page,
+.dashboard-page {
   background-image: url("../../img/mountain.jpeg");
   min-height: 100vh; }
 
@@ -6551,7 +6553,8 @@ h2 {
 
 p,
 a,
-li {
+li,
+h4 {
   font-family: "Raleway", sans-serif; }
 
 .parallax-container {
@@ -6597,6 +6600,9 @@ footer {
 .hidden {
   display: none; }
 
+.greeting {
+  padding-top: 25px; }
+
 h1,
 h2 {
   font-family: "Oleo Script", cursive;
@@ -6604,14 +6610,17 @@ h2 {
 
 p,
 a,
-li {
+li,
+h4 {
   font-family: "Raleway", sans-serif; }
 
 .type-page,
 .filter-page,
 .flavor-page,
 .rating-page,
-.login-page {
+.login-page,
+.register-page,
+.dashboard-page {
   background-image: url("../../img/mountain.jpeg");
   min-height: 100vh; }
 

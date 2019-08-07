@@ -1,7 +1,7 @@
 new Chart(document.getElementById("pie-chart"), {
   type: 'pie',
   data: {
-    labels: ["Woody/Nutty", "Caramel", "Herbal Spice", "Citrus", "Floral", "Fruity", "Vanilla", "None/Mild"],
+    labels: ["Woody/Nutty", "Caramel", "Herbal/Spice", "Citrus", "Floral", "Fruity", "Vanilla", "None/Mild"],
     datasets: [{
       label: "List of Flavors",
       backgroundColor: ["#6E2C00", "#F8C471", "#C0392B", "#FFA500", "#BB8FCE", "#FF1493", "#FEF9E7", "#85929E"],
