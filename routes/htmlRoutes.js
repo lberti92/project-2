@@ -46,6 +46,10 @@ module.exports = function (app) {
     });
 
     app.get("/underage", function (req, res) {
-        res.sendFile(path.join(__dirname + "/underage.html"));
-    })
+        res.sendFile(path.join(__dirname, "../views/html/underage.html"));
+    });
+
+    app.get("/location", function (req, res){
+        res.sendFile(path.join(__dirname, "../views/html/location.html"))
+    });
 };

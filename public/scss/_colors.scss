@@ -6,15 +6,17 @@ $secondary-text-color: rgb(243, 237, 237);
 .type-page,
 .filter-page,
 .flavor-page,
-.rating-page{
+.rating-page,
+.login-page {
     background-image: url("../../img/mountain.jpeg");
+    min-height: 100vh;
 }
 
 
-.card{
+.card {
     background-color: white;
 }
-h2{
+h2 {
     color: $secondary-text-color;
 }
 a {
