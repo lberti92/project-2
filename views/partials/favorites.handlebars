@@ -1,0 +1,12 @@
+{{#if user.favorites}}
+<h4>Your Favorite Distilleries</h4>
+<ul>
+    {{#each user.favorites}}
+    <li>
+        <h5>{{this.distillery}}</h5>
+        <p><a href="{{this.website}}">Website</a></p>
+        <p>{{this.city}}</p>
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
