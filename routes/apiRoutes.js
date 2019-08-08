@@ -61,6 +61,16 @@ module.exports = function(app) {
   //   });
   // });
 
+  app.get("/api/distillery/:distId", function(req, res) {
+    db.Alcohol.findAll({
+      where: {
+        DistilleryId: req.params.distId
+      }
+    }).then(function(alcohols) {
+      res.json(alcohols)
+    })
+  })
+
   app.get("/api/alcohol/ratings/:AlcoholId", function(req, res) {
     db.UserRating.findOne({
       where: {

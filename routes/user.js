@@ -49,7 +49,8 @@ module.exports = function (app) {
                     }
 
                     db.User.create(newUser).then(function (user) {
-                        res.redirect("/users/login");
+                        req.flash( "success_msg", "You are now registered and can log in");
+                        res.redirect("/users/login", {});
                     }).catch(function (err) {
                         console.log(err);
                         res.json(err);
@@ -61,8 +62,8 @@ module.exports = function (app) {
 
     // Login Handle 
     app.post("/users/login", passport.authenticate("local", {
-        successRedirect: `/users/dashboard`,
-        failureRedirect: `/users/login`
+        successRedirect: "/users/dashboard",
+        failureRedirect: "/users/login"
     }), function (req, res) {
         res.json(req.user.id)
     });
