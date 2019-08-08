@@ -3,13 +3,13 @@ var db = require("../models");
 
 
 module.exports = function (passport) {
-  passport.use(new LocalStrategy({ usernameField: "email"}, function(email, password, done) {
+  passport.use(new LocalStrategy({ usernameField: "email" }, function (email, password, done) {
     // When a user tries to sign in this code runs
     db.User.findOne({
       where: {
         email: email
       }
-    }).then(function(dbUser) {
+    }).then(function (dbUser) {
       console.log("checking login")
       // If there's no user with the given email
       if (!dbUser) {
@@ -24,24 +24,20 @@ module.exports = function (passport) {
         });
       }
       // Email and password pass!
-      console.log("logging in!")
       return done(null, dbUser);
-      
+
     });
   }
-));
+  ));
 
-
-
-    // Serializing the user session while logged in
-    passport.serializeUser(function (user, cb) {
-        cb(null, user);
-    });
-    //
-    passport.deserializeUser(function (obj, cb) {
-        cb(null, obj);
-    });
-
+  // Serializing the user session while logged in
+  passport.serializeUser(function (user, cb) {
+    cb(null, user);
+  });
+  //
+  passport.deserializeUser(function (obj, cb) {
+    cb(null, obj);
+  });
 
   // used to deserialize the user
   passport.deserializeUser(function (id, done) {

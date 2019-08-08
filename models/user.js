@@ -2,6 +2,12 @@ var bcrypt = require("bcryptjs");
 
 module.exports = function (sequelize, DataTypes) {
     var User = sequelize.define("User", {
+        id: {
+            type: DataTypes.UUID,
+            primaryKey: true,
+            defaultValue: DataTypes.UUIDV4,
+            allowNull: false
+          },
         name: {
             type: DataTypes.STRING,
             allowNull: false
@@ -37,7 +43,7 @@ module.exports = function (sequelize, DataTypes) {
         // User has many distilleries
         User.belongsToMany(models.Distillery, {through: 'Favorites', foreignKey: 'userId', as: "favorites"});
         User.belongsToMany(models.Distillery, {through: "ToTries", foreignKey: "distToTryId", as: "toTry"});
-
+        User.hasMany(models.UserRating);
       };
 
     return User;

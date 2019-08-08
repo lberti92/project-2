@@ -27,7 +27,7 @@ module.exports = function (app) {
             console.log(user);
             res.render("dashboard", {user: user.dataValues});
         })
-    })
+    });
 
     app.get("/homepage", function (req, res) {
         res.render("homepage")
