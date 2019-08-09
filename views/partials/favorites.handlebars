@@ -3,13 +3,25 @@
     {{#each user.favorites}}
     <li>
         <div class="distillery-info">
-        <h5>{{this.distillery}}</h5>
-        <p><a href="{{this.website}}">Website</a></p>
-        <p>{{this.city}}</p>
-        <button data-distid="{{this.id}}" class="view-alcohol"">View Available Alcohol</button>
+            <h5>{{this.distillery}}</h5>
+            <p><a href="{{this.website}}">Website</a></p>
+            <p>{{this.city}}</p>
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger view-alcohol" data-distid="{{this.id}}"
+                href="#modal1">View Alcohol List</a>
         </div>
-        <div id="{{this.id}}">
-            {{!-- where alcohol from the distillery will be displayed --}}
+        <!-- Modal Structure -->
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h5>{{this.distillery}}</h5>
+                <div id="{{this.id}}">
+                    {{!-- where alcohol from the distillery will be displayed --}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
         </div>
     </li>
     {{/each}}
