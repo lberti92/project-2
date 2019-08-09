@@ -47,12 +47,12 @@ new Chart(document.getElementById("pie-chart"), {
             return flavorChoice = "None-Mild";
         }
       }
-      console.log(getFlavor());
-      // $.get(`/api/flavors/${getFlavor()}`, function (data) {
+      // console.log(getFlavor());
+      // $.get(`/api/flavor/${getFlavor()}`, function (data) {
       //   console.log(`/api/flavors/${getFlavor()}`);
       //   console.log("data from the backend", data);
       // });
-      window.location = `flavor/${getFlavor()}`;
+      window.location = `/flavor/${getFlavor()}`;
     }
   }
 });

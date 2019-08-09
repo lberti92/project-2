@@ -2,16 +2,15 @@ var db = require("../models");
 
 module.exports = function(app) {
   app.get("/flavor/:flavor", function(req, res) {
-    console.log("flavor route hit");
-    console.log(req.params);
+    // console.log("flavor route hit");
+    // console.log(req.params);
    db.Alcohol.findAll({
         where: {
             flavor: req.params.flavor
         },
       include: [db.Distillery]
     }).then(function(dbAlcohol) {
-      console.log("we found alcohol", dbAlcohol);
-      console.log(dbAlcohol)
+      // console.log("we found alcohol", dbAlcohol);
 
       res.render("flavor", {flavor: req.params.flavor, results:dbAlcohol});
 
@@ -19,7 +18,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/types/:type", function(req, res) {
+  app.get("/types/:type", function(req, res) {
     console.log("type route hit");
     console.log(req.params);
     db.Alcohol.findAll({
@@ -29,8 +28,8 @@ module.exports = function(app) {
       include: [db.Distillery]
     }).then(function(dbAlcohol) {
       console.log("we found alcohol");
-      // res.render("type", {alcoholType: req.params.type, results:dbAlcohol});
-      res.json({alcoholType: req.params.type, results:dbAlcohol});
+      res.render("type", {alcoholType: req.params.type, results:dbAlcohol});
+      // res.json(dbAlcohol);
     });
 
   });
