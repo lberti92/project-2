@@ -1,7 +1,7 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/api/flavors/:flavor", function(req, res) {
+  app.get("/flavor/:flavor", function(req, res) {
     console.log("flavor route hit");
     console.log(req.params);
    db.Alcohol.findAll({
@@ -66,4 +66,14 @@ module.exports = function(app) {
       res.json(alcohol);
     })
   });
+
+  app.get("/api/alcohol/rated/:AlcoholId", function(req, res) {
+    db.Alcohol.findOne({
+      where:  {
+        id: req.params.AlcoholId
+      }, include: [db.UserRating]
+    }).then(function(alcohol) {
+      res.json(alcohol)
+    })
+  })
 };
