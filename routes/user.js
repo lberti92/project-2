@@ -50,7 +50,7 @@ module.exports = function (app) {
 
                     db.User.create(newUser).then(function (user) {
                         req.flash( "success_msg", "You are now registered and can log in");
-                        res.redirect("/users/login", {});
+                        res.redirect("/users/login", 200);
                     }).catch(function (err) {
                         console.log(err);
                         res.json(err);

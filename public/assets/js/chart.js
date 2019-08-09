@@ -48,11 +48,11 @@ new Chart(document.getElementById("pie-chart"), {
         }
       }
       console.log(getFlavor());
-      $.get(`/api/flavors/${getFlavor()}`, function (data) {
-        console.log(`/api/flavors/${getFlavor()}`);
-        console.log("data from the backend", data);
-      });
-   
+      // $.get(`/api/flavors/${getFlavor()}`, function (data) {
+      //   console.log(`/api/flavors/${getFlavor()}`);
+      //   console.log("data from the backend", data);
+      // });
+      window.location = `${getFlavor()}`;
     }
   }
 }
