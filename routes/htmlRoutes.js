@@ -22,7 +22,7 @@ module.exports = function (app) {
         db.User.findOne({
             where: {
                 id: req.user.id
-            }, include: ["favorites", "toTry"]
+            }, include: ["favorites", "toTry", db.UserRating]
         }).then(function(user){
             console.log(user);
             res.render("dashboard", {user: user.dataValues});

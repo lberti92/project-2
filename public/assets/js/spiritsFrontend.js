@@ -101,9 +101,14 @@ function initMap() {
   }
 }
 
+// Modal Click Event for Modals
+$('.modal').modal();
+
+
 $(".view-alcohol").on("click", function() {
   var distId = $(this).data("distid");
   $.get(`/api/distillery/${distId}`, function(alcohol) {
+    $(`#${distId}`).empty();
     for (var i = 0; i < alcohol.length; i++) {
       var name = $("<p>").text(alcohol[i].name);
       var type = $("<p>").text(alcohol[i].alcoholType);
@@ -112,6 +117,7 @@ $(".view-alcohol").on("click", function() {
       var alcoholDiv = $("<div>").append(name, type, flavor, addRating);
 
       $(`#${distId}`).append(alcoholDiv);
+
     }
   })
 })
