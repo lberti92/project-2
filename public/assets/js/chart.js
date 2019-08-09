@@ -16,12 +16,12 @@ new Chart(document.getElementById("pie-chart"), {
     "onClick": function (event, item) {
       event.preventDefault();
       console.log(item[0]._index);
-      $.ajax({
+      // $.ajax({
 
-        type:"GET",
-        url:'/api/flavors'
-      
-    });
+      //   type: "GET",
+      //   url: '/api/flavors'
+
+      // });
       var index = item[0]._index;
       function getFlavor() {
 
@@ -47,13 +47,12 @@ new Chart(document.getElementById("pie-chart"), {
             return flavorChoice = "None-Mild";
         }
       }
-      console.log(getFlavor());
-      // $.get(`/api/flavors/${getFlavor()}`, function (data) {
+      // console.log(getFlavor());
+      // $.get(`/api/flavor/${getFlavor()}`, function (data) {
       //   console.log(`/api/flavors/${getFlavor()}`);
       //   console.log("data from the backend", data);
       // });
-      window.location = `${getFlavor()}`;
+      window.location = `/flavor/${getFlavor()}`;
     }
   }
-}
 });
