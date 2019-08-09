@@ -9,20 +9,20 @@ module.exports = function(app) {
       console.log(res);
     });
 
-  //   db.Alcohol.findAll({
-  //       where: {
-  //           flavor: req.body.flavor
-  //       },
-  //     include: [db.Distillery]
-  //   }).then(function(dbAlcohol) {
-  //     res.json(dbAlcohol);
-  //   });
-  // });
+    db.Alcohol.findAll({
+        where: {
+            flavor: req.body.flavor
+        },
+      include: [db.Distillery]
+    }).then(function(dbAlcohol) {
+      res.json(dbAlcohol);
+    });
+  });
 
-  // app.post("/flavors/:id", function(req, res) {
-  //   db.Alcohol.create(req.body).then(function(dbAlcohol) {
-  //     res.json(dbAlcohol);
-  //   });
+  app.post("/flavors/:id", function(req, res) {
+    db.Alcohol.create(req.body).then(function(dbAlcohol) {
+      res.json(dbAlcohol);
+    });
   });
 
   // app.get("/type", function(req, res) {
