@@ -176,4 +176,5 @@ $(".view-alcohol").on("click", function() {
 
     }
   })
+});
 })

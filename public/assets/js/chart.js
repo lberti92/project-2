@@ -19,7 +19,7 @@ new Chart(document.getElementById("pie-chart"), {
       $.ajax({
 
         type:"GET",
-        url:'/api/flavors'
+        url:'/flavor/:flavor'
       
     });
       var index = item[0]._index;
@@ -52,8 +52,7 @@ new Chart(document.getElementById("pie-chart"), {
       //   console.log(`/api/flavors/${getFlavor()}`);
       //   console.log("data from the backend", data);
       // });
-      window.location = `${getFlavor()}`;
+      window.location = `flavor/${getFlavor()}`;
     }
   }
-}
 });

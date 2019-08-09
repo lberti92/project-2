@@ -11,6 +11,7 @@ module.exports = function(app) {
       include: [db.Distillery]
     }).then(function(dbAlcohol) {
       console.log("we found alcohol", dbAlcohol);
+      console.log(dbAlcohol)
 
       res.render("flavor", {flavor: req.params.flavor, results:dbAlcohol});
 
@@ -67,23 +68,6 @@ module.exports = function(app) {
     })
   });
 
-  app.post("/api/flavors/:flavor", function(req, res) {
-    console.log("flavor route hit");
-    console.log(req.params);
-   db.Alcohol.findAll({
-        where: {
-            flavor: req.params.flavor
-        },
-      include: [db.Distillery]
-    }).then(function(dbAlcohol) {
-      console.log("we found alcohol", dbAlcohol);
- 
-      res.json(dbAlcohol);
- 
-      // res.json(dbAlcohol);
-  
-    });
-  });
   app.get("/api/alcohol/rated/:AlcoholId", function(req, res) {
     db.Alcohol.findOne({
       where:  {
