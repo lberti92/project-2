@@ -28,8 +28,8 @@ module.exports = function(app) {
       include: [db.Distillery]
     }).then(function(dbAlcohol) {
       console.log("we found alcohol");
-      res.render("type", {alcoholType: req.params.type, results:dbAlcohol});
-      // res.json(dbAlcohol);
+      // res.render("type", {alcoholType: req.params.type, results:dbAlcohol});
+      res.json({alcoholType: req.params.type, results:dbAlcohol});
     });
 
   });
