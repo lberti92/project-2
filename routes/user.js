@@ -49,7 +49,8 @@ module.exports = function (app) {
                     }
 
                     db.User.create(newUser).then(function (user) {
-                        res.redirect("/users/login");
+                        req.flash( "success_msg", "You are now registered and can log in");
+                        res.redirect("/users/login", {});
                     }).catch(function (err) {
                         console.log(err);
                         res.json(err);
@@ -61,8 +62,8 @@ module.exports = function (app) {
 
     // Login Handle 
     app.post("/users/login", passport.authenticate("local", {
-        successRedirect: `/users/dashboard`,
-        failureRedirect: `/users/login`
+        successRedirect: "/users/dashboard",
+        failureRedirect: "/users/login"
     }), function (req, res) {
         res.json(req.user.id)
     });
@@ -112,6 +113,28 @@ module.exports = function (app) {
         })
     });
 
+    app.post("/rate", function(req, res) {
+        db.UserRating.create({
+            // alcoholName: req.body.alcoholName,
+            rating: req.body.rating,
+            comment: req.body.comment,
+            AlcoholId: req.body.AlcoholId,
+            UserId: req.body.UserId
+        }).then(function(rating){
+            res.json(rating);
+        })
+    });
+
+    app.get("/users/ratings/:UserId", function(req, res) {
+        db.User.findOne({
+            where: {
+                id: req.params.UserId
+            }, include: [db.UserRating]
+        }).then(function(userRatings) {
+            res.json(userRatings);
+        })
+    });
+
 
     app.get("/users/:id", function(req, res) {
         db.User.findOne({
@@ -121,5 +144,5 @@ module.exports = function (app) {
         }).then(function(user) {
             res.json(user);
         })
-    })
+    });
 };

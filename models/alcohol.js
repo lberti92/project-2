@@ -16,6 +16,8 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
+    }, {
+        timestamps: false
     });
 
     Alcohol.associate = function (models) {
@@ -24,6 +26,10 @@ module.exports = function (sequelize, DataTypes) {
                 allowNull: false
             }
         })
+
+        Alcohol.hasMany(models.UserRating, {
+            onDelete: "cascade"
+          })
     }
     return Alcohol;
 };

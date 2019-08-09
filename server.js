@@ -1,7 +1,7 @@
 require("dotenv").config();
 var express = require("express");
 var exphbs = require("express-handlebars");
-// var flash = require("flash")
+var flash = require("connect-flash")
 var session = require("express-session");
 var passport = require("passport")
 
@@ -33,14 +33,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-// app.use(flash())
+app.use(flash())
 
-// app.use((req, res, next) => {
-//   res.locals.success_message = req.flash('success_message');
-//   res.locals.error_message = req.flash('error_message');
-//   res.locals.error = req.flash('error');
-//   next();
-// })
+app.use((req, res, next) => {
+  res.locals.success_message = req.flash("success_message");
+  res.locals.error_message = req.flash("error_message");
+  res.locals.error = req.flash("error");
+  next();
+})
 
 // Routes
 require("./routes/apiRoutes")(app);
