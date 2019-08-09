@@ -34,7 +34,7 @@ module.exports = function (app) {
     });
 
     app.get("/types", function (req, res) {
-        res.render("type")
+        res.render("type");
     });
 
     app.get("/flavor", function (req, res) {
