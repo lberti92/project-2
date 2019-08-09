@@ -43,7 +43,7 @@ module.exports = function (sequelize, DataTypes) {
         // User has many distilleries
         User.belongsToMany(models.Distillery, {through: 'Favorites', foreignKey: 'userId', as: "favorites"});
         User.belongsToMany(models.Distillery, {through: "ToTries", foreignKey: "distToTryId", as: "toTry"});
-        User.hasMany(models.UserRating);
+        // User.hasMany(models.UserRating);
       };
 
     return User;
