@@ -14,7 +14,14 @@ new Chart(document.getElementById("pie-chart"), {
     },  
    //this tells us which array index is clicked on ex: Herbal Spice is 2
     "onClick": function (event, item) {
+      event.preventDefault();
       console.log(item[0]._index);
-    }
+      $.ajax({
+
+        type:"GET",
+        url:'/api/flavors'
+      
+    });
   }
+}
 });
