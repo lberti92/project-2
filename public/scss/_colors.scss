@@ -7,7 +7,9 @@ $secondary-text-color: rgb(243, 237, 237);
 .filter-page,
 .flavor-page,
 .rating-page,
-.login-page {
+.login-page,
+.register-page, 
+.dashboard-page{
     background-image: url("../../img/mountain.jpeg");
     min-height: 100vh;
 }
