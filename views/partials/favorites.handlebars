@@ -1,11 +1,16 @@
 {{#if user.favorites}}
-<h4>Your Favorite Distilleries</h4>
 <ul>
     {{#each user.favorites}}
     <li>
+        <div class="distillery-info">
         <h5>{{this.distillery}}</h5>
         <p><a href="{{this.website}}">Website</a></p>
         <p>{{this.city}}</p>
+        <button data-distid="{{this.id}}" class="view-alcohol"">View Available Alcohol</button>
+        </div>
+        <div id="{{this.id}}">
+            {{!-- where alcohol from the distillery will be displayed --}}
+        </div>
     </li>
     {{/each}}
 </ul>

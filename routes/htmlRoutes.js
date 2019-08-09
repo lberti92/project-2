@@ -27,14 +27,14 @@ module.exports = function (app) {
             console.log(user);
             res.render("dashboard", {user: user.dataValues});
         })
-    })
+    });
 
     app.get("/homepage", function (req, res) {
         res.render("homepage")
     });
 
     app.get("/types", function (req, res) {
-        res.render("type")
+        res.render("type");
     });
 
     app.get("/flavor", function (req, res) {
