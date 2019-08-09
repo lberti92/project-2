@@ -52,4 +52,17 @@ module.exports = function (app) {
     app.get("/location", function (req, res){
         res.sendFile(path.join(__dirname, "../views/html/location.html"))
     });
+
+    // app.get("/api/flavor/:flavor", function (req, res) {
+    //     db.Alcohol.findAll({
+    //         where: {
+    //           flavor: req.params.flavor
+    //         },
+    //       include: [db.Distillery]
+    //     }).then(function(dbAlcohol) {
+    //       console.log("we found alcohol");
+    //       // res.render("type", {alcoholType: req.params.type, results:dbAlcohol});
+    //       res.render("flavor", {alcoholType: req.params.type, results:dbAlcohol});
+    //     });
+    // })
 };
