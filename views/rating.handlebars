@@ -5,13 +5,13 @@
         </div>
         <div class="container ratings-container">
             <div class="row">
-                {{#if ratings}}
-                <h2 class="center-align">Top Alcohols</h2>
-            <ul>
-                {{#each ratings}}
-                <li>{{this.Distillery.Distillery}} --- {{this.name}} --- {{this.rating}}</li>
-                {{/each rating}}
+                {{#if results}}
+            <ul class="collection">
+                {{#each results}}
+                <li class="collection-item center-align">{{this.Distillery.Distillery}} {{this.name}} has a rating of {{this.rating}}</li>
+                {{/each}}
             </ul>
+            {{/if}}
         </div>
     </main>
 </body>
