@@ -1,4 +1,6 @@
 var db = require("../models");
+// Middleware to ensure that a user is logged-in in order to complete a request
+var { ensureAuthenticated, forwardAuthenticated } = require("../config/auth.js");
 
 module.exports = function (app) {
   app.get("/flavor/:flavor", function (req, res) {
@@ -67,27 +69,7 @@ module.exports = function (app) {
     })
   });
 
-  // app.post("/api/flavors/:flavor", function(req, res) {
-  //   console.log("flavor route hit");
-  //   console.log(req.params);
-  //  db.Alcohol.findAll({
-  //       where: {
-  //           flavor: req.params.flavor
-  //       },
-  //     include: [db.Distillery]
-  //   }).then(function(dbAlcohol) {
-  //     console.log("we found alcohol", dbAlcohol);
-
-  //     res.json(dbAlcohol);
-
-  //     // res.json(dbAlcohol);
-
-  //   });
-  // });
-
-
-
-  app.get("/api/alcohol/rated/:AlcoholId", function (req, res) {
+  app.get("/api/alcohol/rated/:AlcoholId", function(req, res) {
     db.Alcohol.findOne({
       where: {
         id: req.params.AlcoholId
@@ -96,4 +78,16 @@ module.exports = function (app) {
       res.json(alcohol)
     })
   });
+
+  app.post("/rate/:AlcoholId", ensureAuthenticated, function (req, res) {
+    console.log(req.body);
+    db.UserRating.create({
+        rating: req.body.rating,
+        comment: req.body.comment,
+        AlcoholId: req.params.AlcoholId,
+        UserId: req.user.id
+    }).then(function (rating) {
+        res.json(rating);
+    })
+});
 };

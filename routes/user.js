@@ -50,8 +50,9 @@ module.exports = function (app) {
                     }
 
                     db.User.create(newUser).then(function (user) {
+                        console.log(newUser);
                         req.flash("success_msg", "You are now registered and can log in");
-                        res.redirect("/users/login", 200);
+                        res.redirect("/users/login");
                     }).catch(function (err) {
                         console.log(err);
                         res.json(err);
@@ -64,7 +65,8 @@ module.exports = function (app) {
     // Login Handle 
     app.post("/users/login", passport.authenticate("local", {
         successRedirect: "/users/dashboard",
-        failureRedirect: "/users/login"
+        failureRedirect: "/users/login",
+        failureFlash: true
     }), function (req, res) {
         res.json(req.user.id)
     });
@@ -111,17 +113,6 @@ module.exports = function (app) {
                 .catch(function (err) {
                     console.log(err)
                 })
-        })
-    });
-
-    app.post("/rate/:AlcoholId", ensureAuthenticated, function (req, res) {
-        db.UserRating.create({
-            rating: req.body.rating,
-            comment: req.body.comment,
-            AlcoholId: req.body.AlcoholId,
-            UserId: req.user.id
-        }).then(function (rating) {
-            res.json(rating);
         })
     });
 

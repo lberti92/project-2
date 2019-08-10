@@ -106,6 +106,24 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 7,
     center: center
+});
+
+  //map logic for location page
+  document.addEventListener('DOMContentLoaded', function () {
+    ;
+    if (document.querySelectorAll("#map").length > 0) {
+      {
+        if (document.querySelector("html").lang)
+          lang = document.querySelector("html").lang;
+        else
+          lang = "en";
+
+        var js_file = document.createElement("script");
+        js_file.type = "text/javascript";
+        js_file.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDaePvaHI6g5YqGAG0NQzJifWDKjySEFO0&callback=initMap&language=" + lang;
+        document.getElementsByTagName('head')[0].appendChild(js_file);
+      }
+    };
   });
   var infowindow = new google.maps.InfoWindow({});
   var marker, count;
@@ -171,8 +189,8 @@ $(".view-alcohol").on("click", function () {
       var name = $("<p>").text(alcohol[i].name);
       var type = $("<p>").text(alcohol[i].alcoholType);
       var flavor = $("<p>").text(alcohol[i].flavor);
-      var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Add As Favorite");
-      var alcoholDiv = $("<div>").append(name, type, flavor, addRating);
+      // var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Rate");
+      var alcoholDiv = $("<div>").append(name, type, flavor);
 
       $(`#${distId}`).append(alcoholDiv);
     }
@@ -220,3 +238,10 @@ $(".favorite-distillery").on("click", function () {
     location.reload();
   });
 });
+
+$("body").on("click", ".rate", function() {
+  var alcoholId = $(this).data("alcoholid");
+  window.location = `/rate/${alcoholId}`;
+})
+
+$('select').formSelect();
