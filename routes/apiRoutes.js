@@ -2,20 +2,15 @@ var db = require("../models");
 // Middleware to ensure that a user is logged-in in order to complete a request
 var { ensureAuthenticated, forwardAuthenticated } = require("../config/auth.js");
 
-module.exports = function (app) {
-  app.get("/flavor/:flavor", function (req, res) {
-    // console.log("flavor route hit");
-    // console.log(req.params);
-    db.Alcohol.findAll({
-      where: {
-        flavor: req.params.flavor
-      },
+module.exports = function(app) {
+  app.get("/flavor/:flavor", function(req, res) {
+   db.Alcohol.findAll({
+        where: {
+            flavor: req.params.flavor
+        },
       include: [db.Distillery]
-    }).then(function (dbAlcohol) {
-      // console.log("we found alcohol", dbAlcohol);
-
-      res.render("flavor", { flavor: req.params.flavor, results: dbAlcohol });
-
+    }).then(function(dbAlcohol) {
+      res.render("flavor", {flavor: req.params.flavor, results:dbAlcohol});
       // res.json(dbAlcohol);
     });
   });
@@ -28,15 +23,14 @@ module.exports = function (app) {
         alcoholType: req.params.type
       },
       include: [db.Distillery]
-    }).then(function (dbAlcohol) {
-      console.log("we found alcohol");
-      res.render("type", { alcoholType: req.params.type, results: dbAlcohol });
+    }).then(function(dbAlcohol) {
+      res.render("type", {alcoholType: req.params.type, results:dbAlcohol});
       // res.json(dbAlcohol);
     });
 
   });
 
-  app.get("/api/locations/:location", function (req, res) {
+  app.get("/api/location/:location", function(req, res) {
     db.Distillery.findAll({
       where: {
         city: req.params.location
@@ -44,8 +38,9 @@ module.exports = function (app) {
       include: [db.Alcohol]
     }).then(function (dbDistillery) {
       console.log("we found distillery", dbDistillery);
-      res.render("???", { city: req.params.location, results: dbDistillery });
+      // res.render("location", {city: req.params.location, results:dbDistillery});
       res.json(dbDistillery);
+      console.log(dbDistillery);
     });
   });
 

@@ -10,21 +10,22 @@
     <link rel="stylesheet" type="text/css" href="/assets/css/materialize.css">
 </head>
 <header>
-        <div class="nav-wrapper container">
-            <img class="responsive-img img-container" src="img/inHighSpirits.png" width="25%">
-            <a class="btn-large button home-button" href="/homepage"><i class="fas fa-wine-bottle"></i></i>Home</a>
-            <a class="btn-large button login-button" href="/users/login"><i class="fas fa-glass-whiskey"></i>Log In</a>
-        </div>
-    </header>
+    <div class="nav-wrapper container">
+        <img class="responsive-img img-container" src="img/inHighSpirits.png" width="25%">
+        <a class="btn-large button home-button" href="/homepage"><i class="fas fa-wine-bottle"></i></i>Home</a>
+        <a class="btn-large button login-button" href="/users/login"><i class="fas fa-glass-whiskey"></i>Log In</a>
+    </div>
+</header>
+
 <body>
     <main>
-    <div class="container">
-        <div class="row">
-        <div id="map" class="col m6"></div>
-        </div>  
-    </div>
-</main>
-<footer>
+        <div class="container">
+            <div class="row">
+                <div id="map" class="col m6"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
         <div class="footer-copyright pad-">
             <div class="container center-align">
                 Made by <a class="grey-text darken-4" href="http://materializecss.com">Lori, Kelsi & Madison</a>
@@ -33,14 +34,26 @@
     </footer>
 </body>
 
-<!-- jQuery is required by Materialize to function --> 
+<div id="modal2" class="modal">
+    <div class="modal-content">
+        <div id="display">
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+
+</div>
+<!-- jQuery is required by Materialize to function -->
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
-<!-- Compiled and minified JavaScript --> 
+<!-- Compiled and minified JavaScript -->
 <script src="/assets/js/materialize.js"></script>
 <!-- Main Frontend JS -->
 
 <script src="/assets/js/spiritsFrontend.js" defer></script>
+
 </html>
 
 </html>

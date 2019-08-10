@@ -56,18 +56,10 @@ module.exports = function (app) {
         res.sendFile(path.join(__dirname, "../views/html/underage.html"));
     });
 
-    app.get("/location", function (req, res) {
+    app.get("/location", function (req, res){
+        // res.render("location")
         res.sendFile(path.join(__dirname, "../views/html/location.html"))
     });
 
-    app.get("/rate/:AlcoholId", function (req, res) {
-        db.Alcohol.findOne({
-            where: {
-                id: req.params.AlcoholId
-            }
-        }).then(function(alcoholData){
 
-            res.render("ratealcohol", { alcohol: alcoholData.dataValues });
-        })
-    })
 };

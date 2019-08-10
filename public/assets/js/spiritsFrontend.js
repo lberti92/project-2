@@ -1,53 +1,62 @@
 var map;
 
+
+// document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function () {
-  //captures data value for type on types page
-  $(".collection-item").on('click', function () {
-    event.preventDefault();
-    var typeSelection = $(this).attr("data-type");
-    // console.log(typeSelection);   
+  var elems = document.querySelectorAll('.slider');
+  // var instances = M.Slider.init(elems, options);
+});
 
-    function getType() {
-      var typeChoice;
+$('.parallax').parallax();
 
-      switch (typeSelection) {
-        case "absinthe":
-          return typeChoice = "Absinthe";
-        case "bitters":
-          return typeChoice = "Bitters-Schnapps";
-        case "bourbon":
-          return typeChoice = "Bourbon";
-        case "brandy":
-          return typeChoice = "Brandy";
-        case "gin":
-          return typeChoice = "Gin";
-        case "cordial":
-          return typeChoice = "Liqueurs-Cordials";
-        case "moonshine":
-          return typeChoice = "Moonshine";
-        case "rum":
-          return typeChoice = "Rum";
-        case "tequila":
-          return typeChoice = "Tequila";
-        case "vodka":
-          return typeChoice = "Vodka";
-        case "whiskey":
-          return typeChoice = "Whiskey";
-        case "other":
-          return typeChoice = "Other";
-      }
+$('.slider').slider();
+
+//allows parallax image on index page
+$(document).ready(function () {
+  $('.parallax').parallax();
+});
+
+//captures data value for type on types page
+$(".collection-item").on('click', function () {
+  event.preventDefault();
+  var typeSelection = $(this).attr("data-type");
+
+  function getType() {
+    var typeChoice;
+
+    switch (typeSelection) {
+      case "absinthe":
+        return typeChoice = "Absinthe";
+      case "bitters":
+        return typeChoice = "Bitters-Schnapps";
+      case "bourbon":
+        return typeChoice = "Bourbon";
+      case "brandy":
+        return typeChoice = "Brandy";
+      case "gin":
+        return typeChoice = "Gin";
+      case "cordial":
+        return typeChoice = "Liqueurs-Cordials";
+      case "moonshine":
+        return typeChoice = "Moonshine";
+      case "rum":
+        return typeChoice = "Rum";
+      case "tequila":
+        return typeChoice = "Tequila";
+      case "vodka":
+        return typeChoice = "Vodka";
+      case "whiskey":
+        return typeChoice = "Whiskey";
+      case "other":
+        return typeChoice = "Other";
     }
-    // $.get(`/api/types/${getType()}`, function (data) {
-    //   console.log(`/api/types/${getType()}`);
-    //   console.log("data from the backend", data);
-    // });
-    window.location = `/types/${getType()}`;
-  });
-})
+  }
+  window.location = `/types/${getType()}`;
+});
 
 //map logic for location page
 document.addEventListener('DOMContentLoaded', function () {
-  ;
+
   if (document.querySelectorAll("#map").length > 0) {
     {
       if (document.querySelector("html").lang)
@@ -58,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function () {
       var js_file = document.createElement("script");
       js_file.type = "text/javascript";
       js_file.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDaePvaHI6g5YqGAG0NQzJifWDKjySEFO0&callback=initMap&language=" + lang;
+
       document.getElementsByTagName('head')[0].appendChild(js_file);
     }
   };
@@ -106,24 +116,6 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 7,
     center: center
-});
-
-  //map logic for location page
-  document.addEventListener('DOMContentLoaded', function () {
-    ;
-    if (document.querySelectorAll("#map").length > 0) {
-      {
-        if (document.querySelector("html").lang)
-          lang = document.querySelector("html").lang;
-        else
-          lang = "en";
-
-        var js_file = document.createElement("script");
-        js_file.type = "text/javascript";
-        js_file.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDaePvaHI6g5YqGAG0NQzJifWDKjySEFO0&callback=initMap&language=" + lang;
-        document.getElementsByTagName('head')[0].appendChild(js_file);
-      }
-    };
   });
   var infowindow = new google.maps.InfoWindow({});
   var marker, count;
@@ -138,7 +130,7 @@ function initMap() {
     google.maps.event.addListener(marker, 'click', (function (marker, count) {
       return function () {
         infowindow.setContent(locations[count][0]);
-        //this is the click event to pull the city information - locations[count][0]??
+        //this is the click event to pull the city information
         infowindow.open(map, marker);
 
         console.log("marker " + marker.title);
@@ -153,11 +145,26 @@ function initMap() {
             return selectedLocation;
           }
         }
-
-        $.get(`/api/locations/${getLocation()}`, function (data) {
-          console.log(`/api/locations/${getLocation()}`);
+        console.log(getLocation());
+        $.get(`/api/location/${getLocation()}`, function (data) {
+          console.log(`/api/location/${getLocation()}`);
           console.log("data from the backend", data);
-        });
+          $("#display").empty();
+          var distillaryName = $("<h4>").addClass("distillery").text(data[0].distillery);
+          var favButton = $("<button>").addClass("btn btn-wave favorite-distillery distillery").attr("data-distid", data[0].distillery.id).text("Save As Favorite");
+          var saveButton = $("<button>").addClass("btn btn-wave save-distillery distillery").attr("data-distid", data[0].distillery.id).text("Save For Later");
+          var alcohol = data[0].Alcohol;
+          var alcoholDiv = $("<div>");
+          for (var i = 0; i < alcohol.length; i++) {
+            
+            var name = $("<p>").text(alcohol[i].name);
+            alcoholDiv.append(name);
+            console.log(alcohol[i].name);
+          }
+          $("#modal2").modal("open");
+          $("#display").append(distillaryName, favButton, saveButton, alcoholDiv);
+          console.log(data[0].distillery);
+        })
       }
     })(marker, count));
   }
