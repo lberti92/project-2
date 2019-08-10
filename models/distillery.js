@@ -21,8 +21,8 @@ module.exports = function (sequelize, DataTypes) {
         Distillery.hasMany(models.Alcohol, {
             onDelete: "CASCADE"
         });
-        Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'userId', as: "userSaved", include: [models.Alcohol]});
-        Distillery.belongsToMany(models.User, {through: 'Favorites', foreignKey: 'distId', as: "user", include: [models.Alcohol]});
+        Distillery.belongsToMany(models.User, {through: 'ToTry', foreignKey: 'DistilleryId', as: "userSaved"});
+        Distillery.belongsToMany(models.User, {through: 'Favorites', foreignKey: 'distId', as: "user"});
     }
     return Distillery;
 };

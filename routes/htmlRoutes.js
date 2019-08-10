@@ -23,9 +23,9 @@ module.exports = function (app) {
             where: {
                 id: req.user.id
             }, include: ["favorites", "toTry"]
-        }).then(function (user) {
-            console.log(user);
-            res.render("dashboard", { user: user.dataValues });
+        }).then(function(user){
+            var capitalName = user.name[0].toUpperCase() + user.name.substring(1)
+            res.render("dashboard", {name: capitalName, user: user.dataValues});
         })
     });
 
@@ -59,4 +59,15 @@ module.exports = function (app) {
     app.get("/location", function (req, res) {
         res.sendFile(path.join(__dirname, "../views/html/location.html"))
     });
+
+    app.get("/rate/:AlcoholId", function (req, res) {
+        db.Alcohol.findOne({
+            where: {
+                id: req.params.AlcoholId
+            }
+        }).then(function(alcoholData){
+
+            res.render("ratealcohol", { alcohol: alcoholData.dataValues });
+        })
+    })
 };

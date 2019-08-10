@@ -42,9 +42,10 @@ module.exports = function (sequelize, DataTypes) {
     User.associate = function(models) {
         // User has many distilleries
         User.belongsToMany(models.Distillery, {through: 'Favorites', foreignKey: 'userId', as: "favorites"});
-        User.belongsToMany(models.Distillery, {through: "ToTries", foreignKey: "distToTryId", as: "toTry"});
+        User.belongsToMany(models.Distillery, {through: "ToTries", foreignKey: "UserId", as: "toTry"});
         // User.hasMany(models.UserRating);
       };
+
 
     return User;
 };

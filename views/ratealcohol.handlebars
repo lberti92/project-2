@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 offset-m3 l6 offset-l3">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">
+                        <h2 class="black-text">{{alcohol.name}}</h2>
+                    </span>
+
+                    <div class="row">
+                        <form class="container" action="/rate/{{alcohol.id}}" method="POST">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <select id="rating" name="rating">
+                                        <option value="">Choose your rating</option>
+                                        <option value="1">1 (Never Again)</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5 (Love It!)</option>
+                                    </select>
+                                    <label for="rating">Rate</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <form class="col s12">
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea id="comment" name="rating" class="materialize-textarea"></textarea>
+                                            <label for="comment" name="rating">Add Comment</label>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <input class="btn waves-effect waves-light" type="submit" id="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

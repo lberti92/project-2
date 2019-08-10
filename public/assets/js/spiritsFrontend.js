@@ -1,85 +1,53 @@
 var map;
 
 document.addEventListener('DOMContentLoaded', function () {
-  var elems = document.querySelectorAll('.slider');
-  // var instances = M.Slider.init(elems, options);
-});
+  //captures data value for type on types page
+  $(".collection-item").on('click', function () {
+    event.preventDefault();
+    var typeSelection = $(this).attr("data-type");
+    // console.log(typeSelection);   
 
-$('.parallax').parallax();
+    function getType() {
+      var typeChoice;
 
-$('.slider').slider();
-
-//allows parallax image on index page
-$(document).ready(function () {
-  $('.parallax').parallax();
-});
-
-//captures data value for type on types page
-$(".collection-item").on('click', function () {
-  event.preventDefault();
-  var typeSelection = $(this).attr("data-type");
-  // console.log(typeSelection);   
-
-  function getType() {
-    var typeChoice;
-
-    switch (typeSelection) {
-      case "absinthe":
-        return typeChoice = "Absinthe";
-      case "bitters":
-        return typeChoice = "Bitters-Schnapps";
-      case "bourbon":
-        return typeChoice = "Bourbon";
-      case "brandy":
-        return typeChoice = "Brandy";
-      case "gin":
-        return typeChoice = "Gin";
-      case "cordial":
-        return typeChoice = "Liqueurs-Cordials";
-      case "moonshine":
-        return typeChoice = "Moonshine";
-      case "rum":
-        return typeChoice = "Rum";
-      case "tequila":
-        return typeChoice = "Tequila";
-      case "vodka":
-        return typeChoice = "Vodka";
-      case "whiskey":
-        return typeChoice = "Whiskey";
-      case "other":
-        return typeChoice = "Other";
+      switch (typeSelection) {
+        case "absinthe":
+          return typeChoice = "Absinthe";
+        case "bitters":
+          return typeChoice = "Bitters-Schnapps";
+        case "bourbon":
+          return typeChoice = "Bourbon";
+        case "brandy":
+          return typeChoice = "Brandy";
+        case "gin":
+          return typeChoice = "Gin";
+        case "cordial":
+          return typeChoice = "Liqueurs-Cordials";
+        case "moonshine":
+          return typeChoice = "Moonshine";
+        case "rum":
+          return typeChoice = "Rum";
+        case "tequila":
+          return typeChoice = "Tequila";
+        case "vodka":
+          return typeChoice = "Vodka";
+        case "whiskey":
+          return typeChoice = "Whiskey";
+        case "other":
+          return typeChoice = "Other";
+      }
     }
-  }
-  // $.get(`/api/types/${getType()}`, function (data) {
-  //   console.log(`/api/types/${getType()}`);
-  //   console.log("data from the backend", data);
-  // });
-  window.location = `/types/${getType()}`;
-});
-
-// Modal Click Event for Modals
-$('.modal').modal();
-
-
-$(".view-alcohol").on("click", function () {
-  var distId = $(this).data("distid");
-  $.get(`/api/distillery/${distId}`, function (alcohol) {
-    $(`#${distId}`).empty();
-    for (var i = 0; i < alcohol.length; i++) {
-      var name = $("<p>").text(alcohol[i].name);
-      var type = $("<p>").text(alcohol[i].alcoholType);
-      var flavor = $("<p>").text(alcohol[i].flavor);
-      var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Add As Favorite");
-      var alcoholDiv = $("<div>").append(name, type, flavor, addRating);
-
-      $(`#${distId}`).append(alcoholDiv);
-
-    }
-  })
-});
+    // $.get(`/api/types/${getType()}`, function (data) {
+    //   console.log(`/api/types/${getType()}`);
+    //   console.log("data from the backend", data);
+    // });
+    window.location = `/types/${getType()}`;
+  });
+})
 
 //map logic for location page
 document.addEventListener('DOMContentLoaded', function () {
+  ;
   if (document.querySelectorAll("#map").length > 0) {
     {
       if (document.querySelector("html").lang)
@@ -138,6 +106,24 @@ function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 7,
     center: center
+});
+
+  //map logic for location page
+  document.addEventListener('DOMContentLoaded', function () {
+    ;
+    if (document.querySelectorAll("#map").length > 0) {
+      {
+        if (document.querySelector("html").lang)
+          lang = document.querySelector("html").lang;
+        else
+          lang = "en";
+
+        var js_file = document.createElement("script");
+        js_file.type = "text/javascript";
+        js_file.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyDaePvaHI6g5YqGAG0NQzJifWDKjySEFO0&callback=initMap&language=" + lang;
+        document.getElementsByTagName('head')[0].appendChild(js_file);
+      }
+    };
   });
   var infowindow = new google.maps.InfoWindow({});
   var marker, count;
@@ -176,3 +162,88 @@ function initMap() {
     })(marker, count));
   }
 }
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.slider');
+  // var instances = M.Slider.init(elems, options);
+});
+
+$('.parallax').parallax();
+
+$('.slider').slider();
+
+//allows parallax image on index page
+$(document).ready(function () {
+  $('.parallax').parallax();
+});
+
+
+// Modal Click Event for Modals
+$('.modal').modal();
+
+$(".view-alcohol").on("click", function () {
+  var distId = $(this).data("distid");
+  $.get(`/api/distillery/${distId}`, function (alcohol) {
+    $(`#${distId}`).empty();
+    for (var i = 0; i < alcohol.length; i++) {
+      var name = $("<p>").text(alcohol[i].name);
+      var type = $("<p>").text(alcohol[i].alcoholType);
+      var flavor = $("<p>").text(alcohol[i].flavor);
+      // var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Rate");
+      var alcoholDiv = $("<div>").append(name, type, flavor);
+
+      $(`#${distId}`).append(alcoholDiv);
+    }
+  })
+})
+
+$(".remove-favorite").on('click', function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/users/favorite/${distId}`,
+    type: "DELETE"
+  }).then(function (result) {
+    location.reload();
+  })
+});
+
+$(".remove-saved").on('click', function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/users/save/${distId}`,
+    type: "DELETE"
+  }).then(function (result) {
+    location.reload();
+  })
+});
+
+$(".save-distillery").on("click", function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/save/${distId}`,
+    type: "POST"
+  }).then(function (result) {
+    console.log(result);
+    location.reload();
+  });
+});
+
+$(".favorite-distillery").on("click", function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/favorite/${distId}`,
+    type: "POST"
+  }).then(function (result) {
+    console.log(result);
+    location.reload();
+  });
+});
+
+$("body").on("click", ".rate", function() {
+  var alcoholId = $(this).data("alcoholid");
+  window.location = `/rate/${alcoholId}`;
+})
+
+$('select').formSelect();
+
