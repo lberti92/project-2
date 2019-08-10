@@ -133,7 +133,7 @@ function initMap() {
         //this is the click event to pull the city information
         infowindow.open(map, marker);
 
-        console.log("marker " + marker.title);
+        // console.log("marker " + marker.title);
 
         function getLocation() {
           var selectedLocation = marker.title;
@@ -147,22 +147,24 @@ function initMap() {
         }
         console.log(getLocation());
         $.get(`/api/location/${getLocation()}`, function (data) {
-          console.log(`/api/location/${getLocation()}`);
-          console.log("data from the backend", data);
+          // console.log(`/api/location/${getLocation()}`);
+          // console.log("data from the backend", data);
+      
           $("#display").empty();
           var distilleryName = $("<h4>").addClass("distillery").text(data[0].distillery);
-          var favButton = $("<button>").addClass("btn btn-wave favorite-distillery distillery").data("data-distid", data[0].distillery.id).text("Save As Favorite");
           var saveButton = $("<button>").addClass("btn btn-wave save-distillery distillery").attr("data-distid", data[0].distillery.id).text("Save For Later");
+          var favButton = $("<button>").addClass("btn btn-wave favorite-distillery distillery").attr("data-distid", data[0].id).text("Save As Favorite");
           var alcohol = data[0].Alcohol;
           var alcoholDiv = $("<div>");
           for (var i = 0; i < alcohol.length; i++) {
             
             var name = $("<p>").text(alcohol[i].name);
             alcoholDiv.append(name);
+            // console.log(alcohol[i].name);
           }
           $("#modal2").modal("open");
-          $("#display").append(distilleryName, favButton, saveButton, alcoholDiv);
-          console.log(data[0].distillery);
+          $("#display").append(distillaryName, favButton, saveButton, alcoholDiv);
+          // console.log(data[0].distillery);
         })
       }
     })(marker, count));
@@ -224,25 +226,24 @@ $(".remove-saved").on('click', function () {
   })
 });
 
-$(".save-distillery").on("click", function () {
+$("#modal2").on("click", ".save-distillery", function () {
   var distId = $(this).data("distid");
+  console.log(distId)
   $.ajax({
     url: `/save/${distId}`,
     type: "POST"
   }).then(function (result) {
     console.log(result);
-    location.reload();
   });
 });
 
-$(".favorite-distillery").on("click", function () {
+$("#modal2").on("click", ".favorite-distillery", function () {
   var distId = $(this).data("distid");
   $.ajax({
     url: `/favorite/${distId}`,
     type: "POST"
   }).then(function (result) {
     console.log(result);
-    location.reload();
   });
 });
 

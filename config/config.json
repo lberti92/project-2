@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "root9",
+=======
+    "password": "root",
+>>>>>>> master
     "database": "highSpirits",
     "host": "127.0.0.1",
     "port": 8889,
