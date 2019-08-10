@@ -170,9 +170,24 @@ function initMap() {
   }
 }
 
+
+document.addEventListener('DOMContentLoaded', function () {
+  var elems = document.querySelectorAll('.slider');
+  // var instances = M.Slider.init(elems, options);
+});
+
+$('.parallax').parallax();
+
+$('.slider').slider();
+
+//allows parallax image on index page
+$(document).ready(function () {
+  $('.parallax').parallax();
+});
+
+
 // Modal Click Event for Modals
 $('.modal').modal();
-
 
 $(".view-alcohol").on("click", function () {
   var distId = $(this).data("distid");
@@ -182,11 +197,60 @@ $(".view-alcohol").on("click", function () {
       var name = $("<p>").text(alcohol[i].name);
       var type = $("<p>").text(alcohol[i].alcoholType);
       var flavor = $("<p>").text(alcohol[i].flavor);
-      var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Add As Favorite");
-      var alcoholDiv = $("<div>").append(name, type, flavor, addRating);
+      // var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Rate");
+      var alcoholDiv = $("<div>").append(name, type, flavor);
 
       $(`#${distId}`).append(alcoholDiv);
-
     }
   })
 })
+
+$(".remove-favorite").on('click', function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/users/favorite/${distId}`,
+    type: "DELETE"
+  }).then(function (result) {
+    location.reload();
+  })
+});
+
+$(".remove-saved").on('click', function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/users/save/${distId}`,
+    type: "DELETE"
+  }).then(function (result) {
+    location.reload();
+  })
+});
+
+$(".save-distillery").on("click", function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/save/${distId}`,
+    type: "POST"
+  }).then(function (result) {
+    console.log(result);
+    location.reload();
+  });
+});
+
+$(".favorite-distillery").on("click", function () {
+  var distId = $(this).data("distid");
+  $.ajax({
+    url: `/favorite/${distId}`,
+    type: "POST"
+  }).then(function (result) {
+    console.log(result);
+    location.reload();
+  });
+});
+
+$("body").on("click", ".rate", function() {
+  var alcoholId = $(this).data("alcoholid");
+  window.location = `/rate/${alcoholId}`;
+})
+
+$('select').formSelect();
+

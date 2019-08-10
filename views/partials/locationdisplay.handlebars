@@ -1,0 +1,13 @@
+{{#if results}}
+<h4>Distilleries in {{this.state}}</h4>
+<ul>
+    {{#each results}}
+    <li>
+        <h5>Distillery: {{this.Distillery.distillery}}</h5>
+        <p>Name of Alcohol: {{this.name}}</p>
+        <p>Type of Alcohol: {{this.alcoholType}}</p>
+    </li>
+    {{/each}}
+    
+</ul>
+{{/if}}

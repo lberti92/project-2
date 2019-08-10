@@ -1,11 +1,9 @@
 {{#if results}}
-<h4>Your Alcohol Type choice is {{this.alcoholType}}</h4>
-<ul>
+<h2 class="center-align">You chose {{this.alcoholType}}</h2>
+<ul class="collection">
     {{#each results}}
-    <li>
-        <h5>Distillery: {{this.Distillery.distillery}}</h5>
-        <p>Name of Alcohol: {{this.name}}</p>
-        <p>Flavor of Alcohol: {{this.flavor}}</p>
+    <li class="collection-item center-align">
+    {{this.Distillery.distillery}} --- {{this.name}}
     </li>
     {{/each}}
 </ul>

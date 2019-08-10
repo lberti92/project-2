@@ -15,6 +15,7 @@ module.exports = function (sequelize, DataTypes) {
         rating: {
             type: DataTypes.INTEGER,
             allowNull: true,
+            defaultValue: 0
         },
     }, {
         timestamps: false

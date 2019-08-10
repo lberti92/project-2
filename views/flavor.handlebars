@@ -12,11 +12,14 @@
                     <canvas id="pie-chart" width="800" height="450"></canvas>
                 </div>
             </div>
-            <div class="container">
-                <div class="rendered-info">
+            </div>
+            <div class="container rendered-info">
+                <div>
+                    {{> flavordisplay}}
                 </div>
             </div>
-        </div>
     </main>
-   {{> flavordisplay}}
+    {{!-- Scripts for Flavor Chart --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+<script src="/assets/js/chart.js"></script>
 </body>

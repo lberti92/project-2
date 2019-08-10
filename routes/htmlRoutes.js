@@ -22,10 +22,10 @@ module.exports = function (app) {
         db.User.findOne({
             where: {
                 id: req.user.id
-            }, include: ["favorites", "toTry", db.UserRating]
+            }, include: ["favorites", "toTry"]
         }).then(function(user){
-            console.log(user);
-            res.render("dashboard", {user: user.dataValues});
+            var capitalName = user.name[0].toUpperCase() + user.name.substring(1)
+            res.render("dashboard", {name: capitalName, user: user.dataValues});
         })
     });
 
@@ -42,7 +42,14 @@ module.exports = function (app) {
     });
 
     app.get("/ratings", function (req, res) {
-        res.render("rating")
+        db.Alcohol.findAll({
+            where: {
+                rating: 5
+            }
+        }).then(function (dbAlcohol) {
+            console.log(dbAlcohol);
+            res.render("rating", {results: dbAlcohol})
+        });
     });
 
     app.get("/underage", function (req, res) {
