@@ -6604,6 +6604,9 @@ footer {
 .greeting {
   padding-top: 25px; }
 
+.rendered-info {
+  margin-bottom: 45px; }
+
 h1,
 h2 {
   font-family: "Oleo Script", cursive;

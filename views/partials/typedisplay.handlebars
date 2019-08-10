@@ -1,9 +1,9 @@
 {{#if results}}
-<h2 class = "center-align">You chose {{this.alcoholType}}</h2>
-<ul class = "collection">
+<h2 class="center-align">You chose {{this.alcoholType}}</h2>
+<ul class="collection">
     {{#each results}}
-    <li class = "collection-item center-align">
-    {{this.Distillery.distillery}} --- {{this.name}} --- {{this.flavor}}
+    <li class="collection-item center-align">
+    {{this.Distillery.distillery}} --- {{this.name}}
     </li>
     {{/each}}
 </ul>
