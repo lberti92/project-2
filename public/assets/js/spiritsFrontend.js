@@ -17,7 +17,7 @@ $(document).ready(function () {
 });
 
 //captures data value for type on types page
-$(".collection-item").on('click', function () {
+$(".type-choice").on('click', function () {
   event.preventDefault();
   var typeSelection = $(this).attr("data-type");
 
@@ -151,9 +151,9 @@ function initMap() {
           // console.log("data from the backend", data);
       
           $("#display").empty();
-          var distillaryName = $("<h4>").addClass("distillery").text(data[0].distillery);
+          var distilleryName = $("<h4>").addClass("distillery").text(data[0].distillery);
+          var saveButton = $("<button>").addClass("btn btn-wave save-distillery distillery").attr("data-distid", data[0].distillery.id).text("Save For Later");
           var favButton = $("<button>").addClass("btn btn-wave favorite-distillery distillery").attr("data-distid", data[0].id).text("Save As Favorite");
-          var saveButton = $("<button>").addClass("btn btn-wave save-distillery distillery").attr("data-distid", data[0].id).text("Save For Later");
           var alcohol = data[0].Alcohol;
           var alcoholDiv = $("<div>");
           for (var i = 0; i < alcohol.length; i++) {
@@ -163,7 +163,7 @@ function initMap() {
             // console.log(alcohol[i].name);
           }
           $("#modal2").modal("open");
-          $("#display").append(distillaryName, favButton, saveButton, alcoholDiv);
+          $("#display").append(distilleryName, favButton, saveButton, alcoholDiv);
           // console.log(data[0].distillery);
         })
       }
