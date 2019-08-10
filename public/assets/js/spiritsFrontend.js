@@ -163,7 +163,7 @@ function initMap() {
             // console.log(alcohol[i].name);
           }
           $("#modal2").modal("open");
-          $("#display").append(distillaryName, favButton, saveButton, alcoholDiv);
+          $("#display").append(distilleryName, favButton, saveButton, alcoholDiv);
           // console.log(data[0].distillery);
         })
       }
