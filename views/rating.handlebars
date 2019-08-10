@@ -4,18 +4,14 @@
             <h2 class="center-align">Here are the top spirits</h2>
         </div>
         <div class="container ratings-container">
+            <div class="row">
+                {{#if ratings}}
+                <h2 class="center-align">Top Alcohols</h2>
             <ul>
-                {{#each rating}}
-                <li>{{name}}</li>
+                {{#each ratings}}
+                <li>{{this.Distillery.Distillery}} --- {{this.name}} --- {{this.rating}}</li>
                 {{/each rating}}
             </ul>
         </div>
     </main>
-    <footer>
-        <div class="footer-copyright pad-">
-            <div class="container center-align">
-                Made by <a class="grey-text darken-4" href="http://materializecss.com">Lori, Kelsi & Madison</a>
-            </div>
-        </div>
-    </footer>
 </body>

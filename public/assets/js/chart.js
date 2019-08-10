@@ -16,12 +16,12 @@ new Chart(document.getElementById("pie-chart"), {
     "onClick": function (event, item) {
       event.preventDefault();
       console.log(item[0]._index);
-      // $.ajax({
+      $.ajax({
 
-      //   type: "GET",
-      //   url: '/api/flavors'
-
-      // });
+        type:"GET",
+        url:'/flavor/:flavor'
+      
+    });
       var index = item[0]._index;
       function getFlavor() {
 

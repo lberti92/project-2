@@ -59,6 +59,28 @@ document.addEventListener('DOMContentLoaded', function () {
     window.location = `/types/${getType()}`;
   });
 
+  // Modal Click Event for Modals
+  $('.modal').modal();
+
+
+  $(".view-alcohol").on("click", function () {
+    var distId = $(this).data("distid");
+    $.get(`/api/distillery/${distId}`, function (alcohol) {
+      $(`#${distId}`).empty();
+      for (var i = 0; i < alcohol.length; i++) {
+        var name = $("<p>").text(alcohol[i].name);
+        var type = $("<p>").text(alcohol[i].alcoholType);
+        var flavor = $("<p>").text(alcohol[i].flavor);
+        var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Add As Favorite");
+        var alcoholDiv = $("<div>").append(name, type, flavor, addRating);
+
+        $(`#${distId}`).append(alcoholDiv);
+
+      }
+    })
+  })
+});
+
   //map logic for location page
   document.addEventListener('DOMContentLoaded', function () {
     ;
@@ -158,25 +180,3 @@ document.addEventListener('DOMContentLoaded', function () {
       })(marker, count));
     }
   }
-
-  // Modal Click Event for Modals
-  $('.modal').modal();
-
-
-  $(".view-alcohol").on("click", function () {
-    var distId = $(this).data("distid");
-    $.get(`/api/distillery/${distId}`, function (alcohol) {
-      $(`#${distId}`).empty();
-      for (var i = 0; i < alcohol.length; i++) {
-        var name = $("<p>").text(alcohol[i].name);
-        var type = $("<p>").text(alcohol[i].alcoholType);
-        var flavor = $("<p>").text(alcohol[i].flavor);
-        var addRating = $("<button>").attr("data-alcoholId", alcohol[i].id).addClass("rate").text("Add As Favorite");
-        var alcoholDiv = $("<div>").append(name, type, flavor, addRating);
-
-        $(`#${distId}`).append(alcoholDiv);
-
-      }
-    })
-  })
-})
