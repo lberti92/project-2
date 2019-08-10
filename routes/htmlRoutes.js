@@ -22,10 +22,10 @@ module.exports = function (app) {
         db.User.findOne({
             where: {
                 id: req.user.id
-            }, include: ["favorites", "toTry", db.UserRating]
+            }, include: ["favorites", "toTry"]
         }).then(function(user){
-            console.log(user);
-            res.render("dashboard", {user: user.dataValues});
+            var capitalName = user.name[0].toUpperCase() + user.name.substring(1)
+            res.render("dashboard", {name: capitalName, user: user.dataValues});
         })
     });
 

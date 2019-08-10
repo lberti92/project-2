@@ -6,6 +6,11 @@
         <h5>Distillery: {{this.Distillery.distillery}}</h5>
         <p>Name of Alcohol: {{this.name}}</p>
         <p>Type of Alcohol: {{this.alcoholType}}</p>
+        <button class="btn waves-effect waves-light save-distillery" data-distid="{{this.Distillery.id}}">Save
+            Distillery</button>
+        <button class="btn waves-effect waves-light favorite-distillery" data-distid="{{this.Distillery.id}}">Add As
+            Favorite</button>
+
     </li>
     {{/each}}
 </ul>

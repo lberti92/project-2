@@ -1,5 +1,6 @@
 var db = require("../models");
 var passport = require("passport");
+var { ensureAuthenticated, forwardAuthenticated } = require("../config/auth.js");
 
 module.exports = function (app) {
     // Register and post to the User table
@@ -49,7 +50,7 @@ module.exports = function (app) {
                     }
 
                     db.User.create(newUser).then(function (user) {
-                        req.flash( "success_msg", "You are now registered and can log in");
+                        req.flash("success_msg", "You are now registered and can log in");
                         res.redirect("/users/login", 200);
                     }).catch(function (err) {
                         console.log(err);
@@ -74,9 +75,9 @@ module.exports = function (app) {
         res.redirect("/");
     });
 
-    app.post("/favorite", function (req, res) {
-        var userId = req.body.userId;
-        var distId = req.body.distId;
+    app.post("/favorite/:distId", ensureAuthenticated, function (req, res) {
+        var userId = req.user.id;
+        var distId = req.params.distId;
         db.User.findOne({
             where: {
                 id: userId
@@ -87,15 +88,15 @@ module.exports = function (app) {
                 .then(function (response) {
                     res.json(response);
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                     console.log(err)
                 })
         })
     });
 
-    app.post("/try", function (req, res) {
-        var userId = req.body.userId;
-        var distId = req.body.distId;
+    app.post("/save/:distId", ensureAuthenticated, function (req, res) {
+        var userId = req.user.id;
+        var distId = req.params.distId;
         db.User.findOne({
             where: {
                 id: userId
@@ -107,41 +108,63 @@ module.exports = function (app) {
                     console.log(response);
                     res.json(response);
                 })
-                .catch(function(err) {
+                .catch(function (err) {
                     console.log(err)
                 })
         })
     });
 
-    app.post("/rate", function(req, res) {
+    app.post("/rate/:AlcoholId", ensureAuthenticated, function (req, res) {
         db.UserRating.create({
-            // alcoholName: req.body.alcoholName,
             rating: req.body.rating,
             comment: req.body.comment,
             AlcoholId: req.body.AlcoholId,
-            UserId: req.body.UserId
-        }).then(function(rating){
+            UserId: req.user.id
+        }).then(function (rating) {
             res.json(rating);
         })
     });
 
-    app.get("/users/ratings/:UserId", function(req, res) {
+    //  Removing a favorite
+    app.delete("/users/favorite/:distId", ensureAuthenticated, function (req, res) {
+        db.Favorite.destroy({
+            where: {
+                distId: req.params.distId,
+                userId: req.user.id
+            }
+        }).then(function (alcohol) {
+            res.json(alcohol);
+        })
+    });
+
+    //  Removing a saved
+    app.delete("/users/save/:distId", ensureAuthenticated, function (req, res) {
+        db.ToTry.destroy({
+            where: {
+                DistilleryId: req.params.distId,
+                UserId: req.user.id
+            }
+        }).then(function (alcohol) {
+            res.json(alcohol);
+        })
+    });
+
+    app.get("/users/ratings/:UserId", function (req, res) {
         db.User.findOne({
             where: {
                 id: req.params.UserId
             }, include: [db.UserRating]
-        }).then(function(userRatings) {
+        }).then(function (userRatings) {
             res.json(userRatings);
         })
     });
 
-
-    app.get("/users/:id", function(req, res) {
+    app.get("/users/:id", function (req, res) {
         db.User.findOne({
             where: {
                 id: req.params.id
             }, include: ["favorites", "toTry"]
-        }).then(function(user) {
+        }).then(function (user) {
             res.json(user);
         })
     });
