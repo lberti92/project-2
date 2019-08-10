@@ -1,17 +1,17 @@
 <body>
     <main class="dashboard-page">
-</body>
-<h3>Cheers, {{ name }}!</h3>
-<div class="row">
-    <div class="col s12 m6">
-        <h4>Your Favorite Distilleries</h4>
-        {{> favorites}}
-    </div>
-
-    <div class="col s12 m6">
-        <h4>Your Saved Distilleries</h4>
-        {{> saved}}
-    </div>
-</div>
-</main>
+        <div class="greeting">
+            <h2 class="center-align">Cheers, {{ user.name }}!</h2>
+        </div>
+        <div class="row">
+            <div class="col s12 m6 l4 offset-l2">
+                <h3>Your Favorite Distilleries</h3>
+                {{> favorites}}
+            </div>
+            <div class="col s12 m6 l4">
+                <h3>Your Saved Distilleries</h3>
+                {{> saved}}
+            </div>
+        </div>
+    </main>
 </body>

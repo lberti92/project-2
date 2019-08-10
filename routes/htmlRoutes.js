@@ -42,14 +42,21 @@ module.exports = function (app) {
     });
 
     app.get("/ratings", function (req, res) {
-        res.render("rating")
+        db.Alcohol.findAll({
+            where: {
+                rating: 5
+            }
+        }).then(function (dbAlcohol) {
+            console.log(dbAlcohol);
+            res.render("rating", {results: dbAlcohol})
+        });
     });
 
     app.get("/underage", function (req, res) {
         res.sendFile(path.join(__dirname, "../views/html/underage.html"));
     });
 
-    app.get("/location", function (req, res){
+    app.get("/location", function (req, res) {
         res.sendFile(path.join(__dirname, "../views/html/location.html"))
     });
 
