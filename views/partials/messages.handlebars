@@ -1,25 +1,25 @@
 {{#if errors}}
   {{#each errors}}
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div class="red-text text-darken-2 center-align" role="alert">
       {{ msg }}
     </div>
     {{/each}}
 {{/if}}
 
 {{#if success_message}}
-  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <div class="red-text text-darken-2 center-align" role="alert">
     {{ success_message }}
   </div>
 {{/if}}
 
 {{#if error_message}}
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <div class="red-text text-darken-2 center-align" role="alert">
     {{ error_message }}
   </div>
 {{/if}}
 
 {{#if error}}
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <div class="red-text text-darken-2 center-align" role="alert">
     {{ error }}
   </div>
 {{/if}}

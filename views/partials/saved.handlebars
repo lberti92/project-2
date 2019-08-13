@@ -1,12 +1,34 @@
-    {{#if user.toTry}}
-    <ul>
-        {{#each user.toTry}}
-        <li>
-            <h5>{{this.distillery}}</h5>
-            <p><a href="{{this.website}}">Website</a></p>
-            <p>{{this.city}}</p>
-            <button class="btn waves-effect waves-light remove-saved" data-distid="{{this.id}}">Remove From Saves</button>
-            </li>
-        {{/each}}
-    </ul>
-    {{/if}}
+{{#if user.toTry}}
+<ul class="collection">
+    {{#each user.toTry}}
+    <li class="collection-item">
+        <h5>{{this.distillery}}</h5>
+        <p>{{this.city}}</p>
+        <p><a href="{{this.website}}">View Website</a></p>
+        <button class="btn waves-effect waves-light remove-saved" data-distid="{{this.id}}">Remove From Saves</button>
+        <!-- Modal Trigger -->
+        <a class="waves-effect waves-light btn modal-trigger view-alcohol" data-distid="{{this.id}}" href="#modal1">View
+            Alcohol List</a>
+        <!-- Modal Structure -->
+
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h5>{{this.distillery}}</h5>
+                <div id="{{this.id}}">
+                    {{!-- where alcohol from the distillery will be displayed --}}
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+        </div>
+    </li>
+    {{/each}}
+</ul>
+{{else}}
+<ul class="collection">
+    <li class="collect-item">
+        <h5><a href="/location">Explore distilleries to save!</a></h5>
+    </li>
+</ul>
+{{/if}}
