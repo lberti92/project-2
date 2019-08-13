@@ -152,8 +152,9 @@ function initMap() {
       
           $("#display").empty();
           var distilleryName = $("<h4>").addClass("distillery").text(data[0].distillery);
-          var saveButton = $("<button>").addClass("btn btn-wave save-distillery distillery").attr("data-distid", data[0].distillery.id).text("Save For Later");
+          var saveButton = $("<button>").addClass("btn btn-wave save-distillery distillery").attr("data-distid", data[0].id).text("Save For Later");
           var favButton = $("<button>").addClass("btn btn-wave favorite-distillery distillery").attr("data-distid", data[0].id).text("Save As Favorite");
+          var savedMsg = $("<div>").attr("id", "saved-msg");
           var alcohol = data[0].Alcohol;
           var alcoholDiv = $("<div>");
           for (var i = 0; i < alcohol.length; i++) {
@@ -163,7 +164,7 @@ function initMap() {
             // console.log(alcohol[i].name);
           }
           $("#modal2").modal("open");
-          $("#display").append(distilleryName, favButton, saveButton, alcoholDiv);
+          $("#display").append(distilleryName, favButton, saveButton, savedMsg, alcoholDiv);
           // console.log(data[0].distillery);
         })
       }
@@ -233,7 +234,7 @@ $("#modal2").on("click", ".save-distillery", function () {
     url: `/save/${distId}`,
     type: "POST"
   }).then(function (result) {
-    console.log(result);
+    $("#saved-msg").empty().append($("<p>").text("Added to enjoy later."));
   });
 });
 
@@ -243,7 +244,7 @@ $("#modal2").on("click", ".favorite-distillery", function () {
     url: `/favorite/${distId}`,
     type: "POST"
   }).then(function (result) {
-    console.log(result);
+    $("#saved-msg").empty().append($("<p>").text("Added to favorites."));
   });
 });
 
@@ -253,4 +254,3 @@ $("body").on("click", ".rate", function() {
 })
 
 $('select').formSelect();
-
