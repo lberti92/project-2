@@ -14,7 +14,7 @@ module.exports = function (app) {
         res.render("register");
     });
 
-    app.get("/users/login", function (req, res) {
+    app.get("/users/login", forwardAuthenticated, function (req, res) {
         res.render("login");
     });
 
