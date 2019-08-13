@@ -154,7 +154,7 @@ function initMap() {
           var distilleryName = $("<h4>").addClass("distillery").text(data[0].distillery);
           var saveButton = $("<button>").addClass("btn btn-wave save-distillery distillery").attr("data-distid", data[0].id).text("Save For Later");
           var favButton = $("<button>").addClass("btn btn-wave favorite-distillery distillery").attr("data-distid", data[0].id).text("Save As Favorite");
-          var savedMsg = $("<div>").attr("id", "saved-msg");
+          var savedMsg = $("<div>").attr("id", "saved-msg").addClass("teal-text text-darken-2 center-align");
           var alcohol = data[0].Alcohol;
           var alcoholDiv = $("<div>");
           for (var i = 0; i < alcohol.length; i++) {
