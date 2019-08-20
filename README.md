@@ -4,7 +4,7 @@ A Full stack web application that allows a user to search for distilleries in th
 
 Please note the ratings are NOT accurate, but created for presentation purposes.  
 
-![High Spirits Page](public\img\Front_Page.png)
+![High Spirits Page](https://github.com/lberti92/project-2/blob/master/public/img/Front_Page.png)
 
 ## Concept 
 Colorado is home to so many amazing breweries, but many people don't realize is how many spirit distilleries are in the state of Colorado.  Our app aims to make it easier to find those distilleries, show what they offer, and find something that will please even the most picky drinkers.
